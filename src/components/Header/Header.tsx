@@ -37,12 +37,11 @@ function Header() {
           <select
             aria-describedby='searchDropdownDescription'
             className='search__dropdown'
+            name='url'
             tabIndex={0}
             title='Search in'
           >
-            <option selected value='search-alias=aps'>
-              All
-            </option>
+            <option value='search-alias=aps'>All</option>
             <option value='search-alias=alexa-skills'>Alexa Skills</option>
             <option value='search-alias=amazon-devices'>Amazon Devices</option>
             <option value='search-alias=amazon-global-store'>
