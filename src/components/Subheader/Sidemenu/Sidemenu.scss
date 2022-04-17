@@ -1,0 +1,92 @@
+.sidemenu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  visibility: hidden;
+  z-index: 10000;
+  &__background {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.8);
+    height: 100%;
+    width: 100%;
+    .sidemenu__closeIcon {
+      color: white;
+      font-size: 30px;
+      cursor: pointer;
+      position: absolute;
+      left: 380px;
+      top: 20px;
+    }
+  }
+  &__canvas {
+    width: 365px;
+    position: fixed;
+    background-color: #fff;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    .sidemenu__customerProfile {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 50px;
+      background-color: #232f3e;
+      color: #fff;
+      font-size: 19px;
+      font-weight: 700;
+      line-height: 25px;
+      text-decoration: none;
+    }
+    .sidemenu__content {
+      position: relative;
+      overflow-x: hidden;
+      height: 100%;
+      .sidemenu__list {
+        padding-top: 7px;
+        padding-bottom: 30px;
+        position: absolute;
+        right: 0;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        overflow: scroll;
+        li {
+          list-style: none;
+          word-wrap: break-word;
+
+          a {
+            text-decoration: none;
+            color: #111;
+          }
+          .sidemenu__item {
+            padding: 13px 20px 13px 36px;
+            display: inline-block;
+            width: 100%;
+            &:not(.sidemenu__title):hover {
+              background-color: #b8b7b7;
+            }
+          }
+          .sidemenu__title {
+            padding-bottom: 5px;
+            font-size: 18px;
+            font-weight: 700;
+            line-height: 24px;
+            color: #111;
+            text-transform: capitalize;
+          }
+        }
+        .sidemenu__separator {
+          border-bottom: 1px solid #d5dbdb;
+          padding: 0;
+          margin: 5px 0;
+        }
+      }
+    }
+  }
+}
+
+.sidemenu--visible {
+  visibility: visible;
+}
