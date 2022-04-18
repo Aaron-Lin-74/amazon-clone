@@ -11,6 +11,7 @@ body {
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   height: 100vh;
+  background-color: rgb(234, 237, 237);
 }
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
