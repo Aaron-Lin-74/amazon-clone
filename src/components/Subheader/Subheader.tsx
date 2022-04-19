@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaBars } from 'react-icons/fa';
-import navbarLinks from '../../constants/navbarLinks';
+import NAVBARLINKS from '../../constants/navbarLinks';
 import './Subheader.scss';
 import Sidemenu from './Sidemenu/Sidemenu';
 
@@ -26,7 +26,7 @@ function Subheader() {
         <span>All</span>
       </div>
       <div className='navbar__main' id='navbar_main_links'>
-        {navbarLinks.map((link) => {
+        {NAVBARLINKS.map((link) => {
           return (
             <Link to={link.href} key={link.id} className='navbar__link'>
               {link.name}
