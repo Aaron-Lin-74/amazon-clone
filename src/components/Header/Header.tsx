@@ -4,8 +4,13 @@ import { AiOutlineSearch, AiFillCaretDown } from 'react-icons/ai';
 import { HiOutlineLocationMarker } from 'react-icons/hi';
 import { BsCart3 } from 'react-icons/bs';
 import './Header.scss';
+import { useStateValue } from '../StateProvider';
+import { getCartItemNumber } from '../../store/reducer';
 
 function Header() {
+  const [{ cart }] = useStateValue();
+  const numberOfItems = getCartItemNumber(cart);
+
   return (
     <header className='header'>
       <div className='header__logo'>
@@ -93,11 +98,13 @@ function Header() {
           <span>Returns</span>
           <span>& Orders</span>
         </div>
-        <div className='header__cart' role='button' tabIndex={0}>
-          <BsCart3 className='header__cartLogo' />
-          <span className='header__optionCart'>0</span>
-          <span>Cart</span>
-        </div>
+        <Link to='/checkout'>
+          <div className='header__cart' role='button' tabIndex={0}>
+            <BsCart3 className='header__cartLogo' />
+            <span className='header__optionCart'>{numberOfItems}</span>
+            <span>Cart</span>
+          </div>
+        </Link>
       </nav>
     </header>
   );

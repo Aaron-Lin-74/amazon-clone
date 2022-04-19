@@ -2,6 +2,8 @@ import React, { ReactNode } from 'react';
 import './Product.scss';
 import { BsStarFill, BsStarHalf, BsStar } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
+import { useStateValue } from '../StateProvider';
+import { CartActions } from '../../store/types';
 
 interface Props {
   id: string;
@@ -11,7 +13,37 @@ interface Props {
   rating: number;
   comments: number;
 }
+
 function Product({ id, title, image, price, rating, comments }: Props) {
+  const [{ cart }, dispatch] = useStateValue();
+  const addToCart = () => {
+    // Check whether the product has been added to the cart
+    if (cart.find((item) => item.id === id) !== undefined) {
+      dispatch({
+        type: CartActions.ADD_AGAIN,
+        payload: {
+          id,
+        },
+      });
+    } else {
+      dispatch({
+        type: CartActions.ADD,
+        payload: {
+          item: {
+            id,
+            title,
+            image,
+            price,
+            rating,
+            comments,
+            quantity: 1,
+            stock: 'In stock',
+            freeShipping: true,
+          },
+        },
+      });
+    }
+  };
   const ratingToStars = (): ReactNode => {
     const buffer: JSX.Element[] = [];
     for (let i = 0; i < Math.floor(rating); i += 1) {
@@ -53,7 +85,7 @@ function Product({ id, title, image, price, rating, comments }: Props) {
         </p>
       </div>
 
-      <button type='button' className='product__btn'>
+      <button type='button' className='product__btn' onClick={addToCart}>
         Add to Cart
       </button>
     </div>
