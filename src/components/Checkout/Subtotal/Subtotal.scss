@@ -1,0 +1,52 @@
+.subtotal {
+  padding: 20px;
+  background-color: white;
+  &__alert {
+    min-height: 20px;
+    display: flex;
+    margin-bottom: 22px;
+    svg {
+      color: #067d62;
+      font-size: 40px;
+      padding-right: 5px;
+    }
+    span {
+      display: inline-block;
+      text-align: left;
+      font-size: 12px;
+      line-height: 15px;
+      &:first-of-type {
+        color: #067d62;
+      }
+    }
+  }
+  &__label {
+    font-size: 18px;
+    line-height: 24px;
+    margin-bottom: 4px;
+  }
+  &__gift {
+    margin-bottom: 12px;
+    .gift__text {
+      padding-left: 5px;
+    }
+  }
+  &__btn {
+    width: 100%;
+    background-color: #fcd200;
+    box-shadow: 0 2px 5px 0 rgb(213 217 217 / 50%);
+    border: none;
+    border-radius: 8px;
+    margin-top: 10px;
+    color: #0f1111;
+    cursor: pointer;
+    font-size: 13px;
+    line-height: 29px;
+    outline: 0;
+    padding: 0 10px;
+    white-space: nowrap;
+    &:hover {
+      background-color: #e9c202;
+    }
+  }
+}

@@ -3,7 +3,7 @@ interface LinkType {
   name: string;
   href: string;
 }
-const navbarLinks: LinkType[] = [
+const NAVBARLINKS: LinkType[] = [
   { id: 0, name: 'Best Sellers', href: '/' },
   { id: 1, name: 'Customer Service', href: '/' },
   { id: 2, name: `Today's Deals`, href: '/' },
@@ -17,4 +17,4 @@ const navbarLinks: LinkType[] = [
   { id: 10, name: 'Home', href: '/' },
 ];
 
-export default navbarLinks;
+export default NAVBARLINKS;
