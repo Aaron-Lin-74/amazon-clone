@@ -6,6 +6,7 @@
   right: 0;
   visibility: hidden;
   z-index: 10000;
+
   &__background {
     position: absolute;
     background-color: rgba(0, 0, 0, 0.8);
@@ -23,6 +24,9 @@
   &__canvas {
     width: 365px;
     position: fixed;
+    left: -500px;
+    transition: all 500ms ease-out;
+
     background-color: #fff;
     height: 100%;
     display: flex;
@@ -89,4 +93,8 @@
 
 .sidemenu--visible {
   visibility: visible;
+  .sidemenu__canvas {
+    left: 0;
+    transition: all 500ms ease-out;
+  }
 }
