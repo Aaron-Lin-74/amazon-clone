@@ -1,0 +1,49 @@
+.checkout {
+  display: flex;
+  &__left {
+    flex: 0.8;
+    padding: 30px 10px 15px 20px;
+    margin-bottom: 20px;
+    min-width: 600px;
+    .cart {
+      padding: 20px;
+      background-color: white;
+      margin-bottom: 20px;
+      &__title {
+        font-weight: 400;
+        font-size: 28px;
+        line-height: 36px;
+      }
+      &__row {
+        width: 100%;
+        margin-top: 12x;
+        border-bottom: 0.5px solid rgba(126, 125, 125, 0.3);
+        position: relative;
+        &--price {
+          margin-top: 28px;
+          &::after {
+            content: 'Price';
+            position: absolute;
+            top: -25px;
+            right: 0;
+          }
+        }
+      }
+      &__subtotalLabel {
+        text-align: right;
+        margin-bottom: 20px;
+      }
+    }
+    .checkout__info {
+      width: 100%;
+      font-size: 12px;
+      line-height: 16px;
+    }
+  }
+  &__right {
+    flex: 0.2;
+    width: 320px;
+    min-width: 320px;
+    padding: 30px 20px 20px 10px;
+  }
+}
