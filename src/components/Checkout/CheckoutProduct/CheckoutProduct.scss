@@ -1,0 +1,101 @@
+.checkoutProduct {
+  display: flex;
+  margin-top: 12px;
+  margin-bottom: 12px;
+  min-width: 500px;
+  &__image {
+    object-fit: contain;
+    width: 180px;
+    min-width: 180px;
+    height: 180px;
+  }
+  &__info {
+    flex-basis: 65%;
+    padding-left: 20px;
+    font-size: 12px;
+    line-height: 16px;
+    .info__list {
+      list-style: none;
+      margin-top: 4px;
+      .info__title {
+        font-size: 18px;
+        line-height: 24px;
+        font-weight: 500;
+      }
+      .info__stock {
+        color: #007600;
+        margin-top: 4px;
+      }
+      .info__shipping {
+        color: #565959;
+        margin-top: 4px;
+      }
+      .info__gift {
+        display: flex;
+        align-items: center;
+        margin-top: 4px;
+        font-weight: 400;
+        color: #0f1111;
+        .gift__text {
+          padding-left: 5px;
+        }
+      }
+    }
+    .info__actionContainer {
+      width: 100%;
+      color: #007185;
+      margin-top: 5px;
+      .quantity__dropdown {
+        border-radius: 7px;
+        background: #f0f2f2;
+        box-shadow: 0 2px 5px rgb(15 17 17 / 15%);
+        height: 29px;
+        width: 75px;
+        cursor: pointer;
+        text-align: center;
+        vertical-align: middle;
+        border-color: #d5d9d9;
+        border-style: solid;
+        border-width: 1px;
+
+        &:hover {
+          background: #cfcfcf;
+        }
+
+        &:focus {
+          border-color: #007185;
+          background-color: #edfdff;
+        }
+        option {
+          background-color: #fff;
+          cursor: pointer;
+        }
+      }
+      .cp__delimiter {
+        padding: 10px;
+        color: #565959;
+        font-size: 15px;
+        font-weight: 100;
+      }
+      .cp__link {
+        cursor: pointer;
+        &:hover {
+          border-bottom: 1px solid #007185;
+        }
+      }
+    }
+    .info__btn {
+      background: #f0c14b;
+      border: 1px solid;
+      margin-top: 10px;
+      border-color: #a88734 #9c7e31 #846a29;
+      color: #111;
+    }
+  }
+  &__price {
+    margin-left: auto;
+    flex-basis: 25%;
+    text-align: right;
+    font-size: 18px;
+  }
+}
