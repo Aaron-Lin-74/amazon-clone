@@ -1,4 +1,12 @@
-import { InitialState, Cart, Item, CartActions, CartAction } from './types';
+import {
+  InitialState,
+  Cart,
+  Item,
+  CartActions,
+  CartAction,
+  UserActions,
+  UserAction,
+} from './types';
 
 export const initialState: InitialState = {
   cart: [],
@@ -15,7 +23,7 @@ export const getCartTotal = (cart: Cart): number =>
 export const getCartItemNumber = (cart: Cart): number =>
   cart?.reduce((number: number, item) => item.quantity + number, 0);
 
-const reducer = (state: InitialState, action: CartAction) => {
+const reducer = (state: InitialState, action: CartAction | UserAction) => {
   switch (action.type) {
     case CartActions.ADD:
       return { ...state, cart: [...state.cart, action.payload.item] };
@@ -44,6 +52,21 @@ const reducer = (state: InitialState, action: CartAction) => {
       return {
         ...state,
         cart: state.cart.filter((item: Item) => item.id !== action.payload.id),
+      };
+    case UserActions.SIGN_IN:
+      return {
+        ...state,
+        user: action.payload.user,
+      };
+    case UserActions.SIGN_UP:
+      return {
+        ...state,
+        user: action.payload.user,
+      };
+    case UserActions.SIGN_OUT:
+      return {
+        ...state,
+        user: null,
       };
     default:
       return state;

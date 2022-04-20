@@ -1,3 +1,5 @@
+import { User } from 'firebase/auth';
+
 export type Item = {
   id: string;
   title: string;
@@ -10,18 +12,11 @@ export type Item = {
   freeShipping: boolean;
 };
 
-export type User = null | {
-  id: string;
-  firstName: string;
-  lastName: string;
-  address?: string;
-};
-
 export type Cart = Item[];
 
 export type InitialState = {
   cart: Item[];
-  user: User;
+  user: User | null;
 };
 
 export enum CartActions {
@@ -29,6 +24,14 @@ export enum CartActions {
   ADD_AGAIN = 'ADD_AGAIN',
   CHANGE_QUANTITY = 'CHANGE_QUANTITY',
   DELETE = 'DELETE',
+}
+
+export enum UserActions {
+  SIGN_IN = 'SIGN_IN',
+  SIGN_OUT = 'SING_OUT',
+  SIGN_UP = 'SIGN_UP',
+  DELETE_USER = 'DELETE_USER',
+  UPDATE = 'UPDATE',
 }
 
 export type CartAction =
@@ -40,10 +43,7 @@ export type CartAction =
     }
   | { type: CartActions.DELETE; payload: { id: string } };
 
-export enum UserActions {
-  SIGN_IN = 'SIGN_IN',
-  SIGN_OUT = 'SING_OUT',
-  SIGN_UP = 'SIGN_UP',
-  DELETE_USER = 'DELETE_USER',
-  UPDATE = 'UPDATE',
-}
+export type UserAction =
+  | { type: UserActions.SIGN_IN; payload: { user: User } }
+  | { type: UserActions.SIGN_UP; payload: { user: User } }
+  | { type: UserActions.SIGN_OUT };

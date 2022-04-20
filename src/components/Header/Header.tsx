@@ -1,16 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { AiOutlineSearch, AiFillCaretDown } from 'react-icons/ai';
+import { AiOutlineSearch } from 'react-icons/ai';
 import { HiOutlineLocationMarker } from 'react-icons/hi';
 import { BsCart3 } from 'react-icons/bs';
 import './Header.scss';
 import { useStateValue } from '../StateProvider';
 import { getCartItemNumber } from '../../store/reducer';
+import { signOutUser } from '../../firebase';
 
 function Header() {
-  const [{ cart }] = useStateValue();
+  const [{ cart, user }] = useStateValue();
   const numberOfItems = getCartItemNumber(cart);
-
+  const handleAuthentication = () => {
+    if (user) {
+      signOutUser();
+    }
+  };
   return (
     <header className='header'>
       <div className='header__logo'>
@@ -26,7 +31,7 @@ function Header() {
       <div className='header__location' role='button' tabIndex={0}>
         <HiOutlineLocationMarker className='location__icon' />
         <div className='location__text'>
-          <span>Hello</span>
+          <span>Hello {user && (user.displayName || user.email)}</span>
           <span>Select your address</span>
         </div>
       </div>
@@ -87,13 +92,18 @@ function Header() {
         </form>
       </div>
       <nav className='header__nav'>
-        <div className='header__option' role='button' tabIndex={0}>
-          <span>Hello, Sign in</span>
-          <span>
-            Account & Lists
-            <AiFillCaretDown />
-          </span>
-        </div>
+        <Link to={user ? '/' : '/signin'}>
+          <div
+            className='header__option'
+            role='button'
+            tabIndex={0}
+            onClick={handleAuthentication}
+            onKeyDown={handleAuthentication}
+          >
+            <span>Hello, {user ? user.email : 'Sign in'}</span>
+            <span>{user ? 'Sign Out' : 'Account & Lists'}</span>
+          </div>
+        </Link>
         <div className='header__option' role='button' tabIndex={0}>
           <span>Returns</span>
           <span>& Orders</span>
@@ -102,7 +112,6 @@ function Header() {
           <div className='header__cart' role='button' tabIndex={0}>
             <BsCart3 className='header__cartLogo' />
             <span className='header__optionCart'>{numberOfItems}</span>
-            <span>Cart</span>
           </div>
         </Link>
       </nav>
