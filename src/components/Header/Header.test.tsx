@@ -3,6 +3,11 @@ import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import Header from './Header';
 
+jest.mock('../../firebase', () => {
+  return {
+    signOutUser: jest.fn(),
+  };
+});
 describe('Header component', () => {
   test('should render the component', () => {
     render(<Header />, { wrapper: BrowserRouter });
@@ -27,7 +32,7 @@ describe('Header component', () => {
       name: /returns & orders/i,
     });
     screen.getByRole('button', {
-      name: /0 cart/i,
+      name: '0',
     });
   });
 });
