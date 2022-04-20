@@ -1,9 +1,9 @@
 import React, { createContext, Reducer, useContext, useReducer } from 'react';
 import { initialState as defaultState } from '../store/reducer';
-import { CartAction, InitialState } from '../store/types';
+import { CartAction, UserAction, InitialState } from '../store/types';
 
 export const StateContext = createContext<
-  [InitialState, React.Dispatch<CartAction>]
+  [InitialState, React.Dispatch<CartAction | UserAction>]
 >([defaultState, () => null]);
 
 export function StateProvider({
@@ -11,7 +11,7 @@ export function StateProvider({
   initialState,
   children,
 }: {
-  reducer: Reducer<InitialState, CartAction>;
+  reducer: Reducer<InitialState, CartAction | UserAction>;
   initialState: InitialState;
   children: React.ReactNode;
 }) {
