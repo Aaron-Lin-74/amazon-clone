@@ -1,0 +1,162 @@
+.signIn {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  &__logo {
+    position: relative;
+    width: 100px;
+    margin-top: 20px;
+    margin-bottom: 22px;
+    margin-right: auto;
+    margin-left: auto;
+    object-fit: contain;
+    &::after {
+      content: '.com.au';
+      position: absolute;
+      top: 3px;
+      padding-left: 5px;
+      color: #111;
+    }
+    img {
+      width: 100%;
+      object-fit: contain;
+    }
+  }
+  &__container {
+    width: 350px;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    border: 1px solid lightgray;
+    padding: 20px 26px;
+    margin-bottom: 22px;
+    h1 {
+      font-weight: 500;
+      margin-bottom: 20px;
+    }
+    form {
+      label {
+        display: block;
+        padding-bottom: 2px;
+        font-weight: 700;
+      }
+      input {
+        width: 100%;
+        height: 31px;
+        padding: 3px 7px;
+        margin-right: 0;
+        margin-bottom: 10px;
+        background-color: white;
+        background-color: #fff;
+        line-height: normal;
+        border: 1px solid #a6a6a6;
+        border-top-color: #949494;
+        border-radius: 3px;
+        box-shadow: 0 1px 0 rgb(255 255 255 / 50%),
+          0 1px 0 rgb(0 0 0 / 7%) inset;
+        outline: 0;
+      }
+      .signIn__btn {
+        background: linear-gradient(to bottom, #f7dfa5, #f0c14b);
+        border: 1px solid;
+        border-color: #a88734 #9c7e31 #846a29;
+        border-radius: 3px;
+        width: 100%;
+        height: 30px;
+        box-shadow: 0 1px 0 rgb(255 255 255 / 40%) inset;
+        padding: 0 10px 0 11px;
+        margin-top: 16px;
+        color: #111;
+        font-size: 13px;
+        line-height: 29px;
+        outline: 0;
+        text-align: center;
+        white-space: nowrap;
+        cursor: pointer;
+        &:hover {
+          background: #f0c14b;
+        }
+      }
+    }
+    .signIn__legal {
+      margin-top: 18px;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+  }
+  &__divider {
+    text-align: center;
+    position: relative;
+    top: 2px;
+    padding-top: 1px;
+    margin-bottom: 14px;
+    line-height: 0;
+    width: 350px;
+    p {
+      position: relative;
+      line-height: 1;
+      font-size: 12px;
+      color: #767676;
+      font-weight: 400;
+      display: inline-block;
+      background-color: #fff;
+      padding: 0 8px 0 7px;
+      z-index: 2;
+    }
+    &::after {
+      content: '';
+      width: 100%;
+      background-color: transparent;
+      display: block;
+      height: 1px;
+      border-top: 1px solid #e7e7e7;
+      position: absolute;
+      left: 0;
+      top: 50%;
+      margin-top: -1px;
+      z-index: 1;
+    }
+  }
+  &__registerBtn {
+    width: 350px;
+    height: 30px;
+    border: 1px solid;
+    border-radius: 3px;
+    border-color: darkgray;
+    margin-top: 10px;
+    background: linear-gradient(to bottom, #f7f8fa, #e7e9ec);
+    cursor: pointer;
+    &:hover {
+      background: #cdcdcf;
+    }
+  }
+  &__sectionDivider {
+    width: 100%;
+    height: 44px;
+    margin-top: 26px;
+    margin-bottom: -18px;
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.14),
+      rgba(0, 0, 0, 0.03) 3px,
+      transparent
+    );
+    z-index: 0;
+
+    &::after {
+      display: block;
+      height: 44px;
+      background: linear-gradient(to right, #fff, rgba(255, 255, 255, 0), #fff);
+      z-index: 1;
+      content: '';
+    }
+  }
+  &__footer {
+    font-size: 11px;
+    line-height: 1.465;
+    color: #555;
+  }
+}
