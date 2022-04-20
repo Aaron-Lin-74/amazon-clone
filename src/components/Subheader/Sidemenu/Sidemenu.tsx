@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { AiOutlineClose } from 'react-icons/ai';
 import { CgProfile } from 'react-icons/cg';
+import { useStateValue } from '../../StateProvider';
 import './Sidemenu.scss';
 
 interface Props {
@@ -9,6 +10,7 @@ interface Props {
   closeSidemenu: () => void;
 }
 function Sidemenu({ isSidemenuOpen, closeSidemenu }: Props) {
+  const [{ user }] = useStateValue();
   return (
     <div
       className={` ${
@@ -26,12 +28,12 @@ function Sidemenu({ isSidemenuOpen, closeSidemenu }: Props) {
       </div>
       <div className='sidemenu__canvas'>
         <Link
-          to='/'
+          to={user ? '/' : '/signin'}
           className='sidemenu__customerProfile'
           onClick={closeSidemenu}
         >
           <CgProfile />
-          Hello, Sign in
+          Hello, {user ? user.displayName || user.email : 'Sign in'}
         </Link>
         <div className='sidemenu__content'>
           <ul className='sidemenu__list'>
