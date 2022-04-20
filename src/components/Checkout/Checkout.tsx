@@ -16,7 +16,9 @@ function Checkout() {
     <div className='checkout'>
       <div className='checkout__left'>
         <div className='cart'>
-          <h1 className='cart__title'>Shopping Cart</h1>
+          <h1 className='cart__title'>
+            {!cart.length ? 'Your Amazon Cart is empty.' : 'Shopping Cart'}
+          </h1>
           <div className='cart__row cart__row--price' />
           {cart.map((item) => {
             return (
@@ -58,9 +60,7 @@ function Checkout() {
           </p>
         </div>
       </div>
-      <div className='checkout__right'>
-        <Subtotal />
-      </div>
+      <div className='checkout__right'>{!!cart.length && <Subtotal />}</div>
     </div>
   );
 }

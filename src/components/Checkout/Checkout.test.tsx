@@ -6,9 +6,9 @@ describe('Checkout component', () => {
   test('should render the component', () => {
     render(<Checkout />, { wrapper: BrowserRouter });
     screen.getByRole('heading', {
-      name: /shopping cart/i,
+      name: 'Your Amazon Cart is empty.',
     });
-    expect(screen.getAllByText(/subtotal \(0 item \):/i)).toHaveLength(2);
+    expect(screen.getAllByText(/subtotal \(0 item \):/i)).toHaveLength(1);
     screen.getByText(
       /the price and availability of items at amazon\.com\.au are subject to change\. the shopping cart is a temporary place to store a list of your items and reflects each item's most recent price\./i
     );
