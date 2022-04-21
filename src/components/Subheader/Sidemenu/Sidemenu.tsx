@@ -4,6 +4,7 @@ import { AiOutlineClose } from 'react-icons/ai';
 import { CgProfile } from 'react-icons/cg';
 import { useStateValue } from '../../StateProvider';
 import './Sidemenu.scss';
+import SIDEMENU from '../../../constants/sideMenu';
 
 interface Props {
   isSidemenuOpen: boolean;
@@ -37,61 +38,30 @@ function Sidemenu({ isSidemenuOpen, closeSidemenu }: Props) {
         </Link>
         <div className='sidemenu__content'>
           <ul className='sidemenu__list'>
-            <li>
-              <span className='sidemenu__item sidemenu__title'>Trending</span>
-            </li>
-            <li>
-              <Link to='/' className='sidemenu__item' onClick={closeSidemenu}>
-                Best Sellers
-              </Link>
-            </li>
-            <li>
-              <Link to='/' className='sidemenu__item' onClick={closeSidemenu}>
-                New Releases
-              </Link>
-            </li>
-            <li>
-              <Link to='/' className='sidemenu__item' onClick={closeSidemenu}>
-                Movers and Shakers
-              </Link>
-            </li>
-            <li className='sidemenu__separator' />
-            <li>
-              <span className='sidemenu__item sidemenu__title'>
-                Digital Content And Devices
-              </span>
-            </li>
-            <li>
-              <Link to='/' className='sidemenu__item' onClick={closeSidemenu}>
-                Echo & Alexa
-              </Link>
-            </li>
-            <li>
-              <Link to='/' className='sidemenu__item' onClick={closeSidemenu}>
-                Kindle E-readers & Books
-              </Link>
-            </li>
-            <li>
-              <Link to='/' className='sidemenu__item' onClick={closeSidemenu}>
-                Amazon Fire TV
-              </Link>
-            </li>
-            <li>
-              <Link to='/' className='sidemenu__item' onClick={closeSidemenu}>
-                Amazon Prime Video
-              </Link>
-            </li>
-            <li>
-              <Link to='/' className='sidemenu__item' onClick={closeSidemenu}>
-                Amazon Music
-              </Link>
-            </li>
-            <li>
-              <Link to='/' className='sidemenu__item' onClick={closeSidemenu}>
-                Audible Audiobooks
-              </Link>
-            </li>
-            <li className='sidemenu__separator' />
+            {SIDEMENU.map((category) => {
+              return (
+                <>
+                  <li key={category.title}>
+                    <span className='sidemenu__item sidemenu__title'>
+                      {category.title}
+                    </span>
+                  </li>
+                  {category.links.map((link) => {
+                    return (
+                      <li key={link.name}>
+                        <Link
+                          to={link.href}
+                          className='sidemenu__item'
+                          onClick={closeSidemenu}
+                        >
+                          {link.name}
+                        </Link>
+                      </li>
+                    );
+                  })}
+                </>
+              );
+            })}
           </ul>
         </div>
       </div>
