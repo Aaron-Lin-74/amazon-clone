@@ -10,6 +10,7 @@ import SignIn from './components/SignIn/SignIn';
 import { auth, onAuthStateChanged } from './firebase';
 import { UserActions } from './store/types';
 import { useStateValue } from './components/StateProvider';
+import Demo from './components/Demo/Demo';
 
 function App() {
   const [, dispatch] = useStateValue();
@@ -47,6 +48,16 @@ function App() {
           }
         />
         <Route path='/signin' element={<SignIn />} />
+        <Route
+          path='/demo'
+          element={
+            <>
+              <Header />
+              <Subheader />
+              <Demo />
+            </>
+          }
+        />
       </Routes>
     </div>
   );
