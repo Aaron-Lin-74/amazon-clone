@@ -62,7 +62,7 @@ function SignIn() {
       <div className='signIn__container'>
         <h1>Sign-In</h1>
 
-        <form>
+        <form onSubmit={signIn}>
           <label htmlFor='email'>
             E-mail
             <input
@@ -70,6 +70,7 @@ function SignIn() {
               type='text'
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              required
             />
           </label>
 
@@ -80,10 +81,11 @@ function SignIn() {
               type='password'
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              required
             />
           </label>
 
-          <button type='submit' onClick={signIn} className='signIn__btn'>
+          <button type='submit' className='signIn__btn'>
             Sign In
           </button>
         </form>
