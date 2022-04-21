@@ -1,20 +1,20 @@
-.checkout {
+.cart {
   display: flex;
   &__left {
     flex: 0.8;
     padding: 30px 10px 15px 20px;
     margin-bottom: 20px;
     min-width: 600px;
-    .cart {
+    .cart__container {
       padding: 20px;
       background-color: white;
       margin-bottom: 20px;
-      &__title {
+      .cart__title {
         font-weight: 400;
         font-size: 28px;
         line-height: 36px;
       }
-      &__row {
+      .cart__row {
         width: 100%;
         margin-top: 12x;
         border-bottom: 0.5px solid rgba(126, 125, 125, 0.3);
@@ -29,12 +29,12 @@
           }
         }
       }
-      &__subtotalLabel {
+      .cart__subtotalLabel {
         text-align: right;
         margin-bottom: 20px;
       }
     }
-    .checkout__info {
+    .cart__info {
       width: 100%;
       font-size: 12px;
       line-height: 16px;
