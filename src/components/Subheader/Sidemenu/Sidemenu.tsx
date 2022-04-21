@@ -4,7 +4,7 @@ import { AiOutlineClose } from 'react-icons/ai';
 import { CgProfile } from 'react-icons/cg';
 import { useStateValue } from '../../StateProvider';
 import './Sidemenu.scss';
-import SIDEMENU from '../../../constants/sideMenu';
+import SIDEMENU from '../../../constants/sidemenu';
 
 interface Props {
   isSidemenuOpen: boolean;
