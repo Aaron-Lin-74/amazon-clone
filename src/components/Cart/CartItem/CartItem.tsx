@@ -2,7 +2,7 @@ import React from 'react';
 import NumberFormat from 'react-number-format';
 import { CartActions } from '../../../store/types';
 import { useStateValue } from '../../StateProvider';
-import './CheckoutProduct.scss';
+import './CartItem.scss';
 
 interface Props {
   id: string;
@@ -13,7 +13,7 @@ interface Props {
   stock: string;
   freeShipping: boolean;
 }
-function CheckoutProduct({
+function CartItem({
   id,
   image,
   title,
@@ -47,10 +47,10 @@ function CheckoutProduct({
 
   return (
     <>
-      <div className='checkoutProduct'>
-        <img className='checkoutProduct__image' src={image} alt={title} />
+      <div className='cartItem'>
+        <img className='cartItem__image' src={image} alt={title} />
 
-        <div className='checkoutProduct__info'>
+        <div className='cartItem__info'>
           <ul className='info__list'>
             <li>
               <p className='info__title'>{title}</p>
@@ -93,9 +93,9 @@ function CheckoutProduct({
               <option value={9}>9</option>
               <option value={10}>10</option>
             </select>
-            <span className='cp__delimiter'>|</span>
+            <span className='cartItem__delimiter'>|</span>
             <span
-              className='cp__link'
+              className='cartItem__link'
               role='button'
               onClick={removeFromBasket}
               onKeyDown={removeFromBasket}
@@ -103,11 +103,11 @@ function CheckoutProduct({
             >
               Delete
             </span>
-            <span className='cp__delimiter'>|</span>
-            <span className='cp__link'>Save for later</span>
+            <span className='cartItem__delimiter'>|</span>
+            <span className='cartItem__link'>Save for later</span>
           </div>
         </div>
-        <p className='checkoutProduct__price'>
+        <p className='cartItem__price'>
           <strong>
             <NumberFormat
               value={price}
@@ -125,4 +125,4 @@ function CheckoutProduct({
   );
 }
 
-export default CheckoutProduct;
+export default CartItem;

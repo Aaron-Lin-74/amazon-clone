@@ -1,6 +1,6 @@
 import { screen, render } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
-import CheckoutProduct from './CheckoutProduct';
+import CartItem from './CartItem';
 
 describe('CheckoutProduct component', () => {
   const mockProduct = {
@@ -14,7 +14,7 @@ describe('CheckoutProduct component', () => {
   };
   test('should render the component', () => {
     // eslint-disable-next-line react/jsx-props-no-spreading
-    render(<CheckoutProduct {...mockProduct} />, { wrapper: BrowserRouter });
+    render(<CartItem {...mockProduct} />, { wrapper: BrowserRouter });
     screen.getByRole('img', {
       name: /mock title/i,
     });

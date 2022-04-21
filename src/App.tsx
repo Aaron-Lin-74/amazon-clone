@@ -4,7 +4,7 @@ import { User } from 'firebase/auth';
 import Header from './components/Header/Header';
 import Subheader from './components/Subheader/Subheader';
 import Home from './components/Home/Home';
-import Checkout from './components/Checkout/Checkout';
+import Cart from './components/Cart/Cart';
 import './App.css';
 import SignIn from './components/SignIn/SignIn';
 import { auth, onAuthStateChanged } from './firebase';
@@ -42,7 +42,7 @@ function App() {
             <>
               <Header />
               <Subheader />
-              <Checkout />
+              <Cart />
             </>
           }
         />

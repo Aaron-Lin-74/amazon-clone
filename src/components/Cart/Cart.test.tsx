@@ -1,10 +1,10 @@
 import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
-import Checkout from './Checkout';
+import Cart from './Cart';
 
 describe('Checkout component', () => {
   test('should render the component', () => {
-    render(<Checkout />, { wrapper: BrowserRouter });
+    render(<Cart />, { wrapper: BrowserRouter });
     screen.getByRole('heading', {
       name: 'Your Amazon Cart is empty.',
     });

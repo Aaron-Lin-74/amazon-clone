@@ -1,11 +1,11 @@
 import React from 'react';
-import './Checkout.scss';
+import './Cart.scss';
 import NumberFormat from 'react-number-format';
 import Subtotal from './Subtotal/Subtotal';
 import { getCartTotal, getCartItemNumber } from '../../store/reducer';
 
 import { useStateValue } from '../StateProvider';
-import CheckoutProduct from './CheckoutProduct/CheckoutProduct';
+import CartItem from './CartItem/CartItem';
 
 function Checkout() {
   const [{ cart }] = useStateValue();
@@ -13,16 +13,16 @@ function Checkout() {
   const numberOfItems = getCartItemNumber(cart);
 
   return (
-    <div className='checkout'>
-      <div className='checkout__left'>
-        <div className='cart'>
+    <div className='cart'>
+      <div className='cart__left'>
+        <div className='cart__container'>
           <h1 className='cart__title'>
             {!cart.length ? 'Your Amazon Cart is empty.' : 'Shopping Cart'}
           </h1>
           <div className='cart__row cart__row--price' />
           {cart.map((item) => {
             return (
-              <CheckoutProduct
+              <CartItem
                 key={item.id}
                 id={item.id}
                 image={item.image}
@@ -48,7 +48,7 @@ function Checkout() {
             </strong>
           </div>
         </div>
-        <div className='checkout__info'>
+        <div className='cart__info'>
           <p>
             The price and availability of items at Amazon.com.au are subject to
             change. The Shopping Cart is a temporary place to store a list of
@@ -60,7 +60,7 @@ function Checkout() {
           </p>
         </div>
       </div>
-      <div className='checkout__right'>{!!cart.length && <Subtotal />}</div>
+      <div className='cart__right'>{!!cart.length && <Subtotal />}</div>
     </div>
   );
 }
