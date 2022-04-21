@@ -49,11 +49,11 @@
     }
 
     &--prev {
-      transform: translateX(-100%);
+      transform: translateX(-150%);
       opacity: 0;
     }
     &--next {
-      transform: translateX(100%);
+      transform: translateX(150%);
       opacity: 0;
     }
     img {
