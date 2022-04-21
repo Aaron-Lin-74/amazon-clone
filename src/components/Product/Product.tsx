@@ -2,6 +2,7 @@ import React, { ReactNode } from 'react';
 import './Product.scss';
 import { BsStarFill, BsStarHalf, BsStar } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
+import NumberFormat from 'react-number-format';
 import { useStateValue } from '../StateProvider';
 import { CartActions } from '../../store/types';
 
@@ -81,7 +82,15 @@ function Product({ id, title, image, price, rating, comments }: Props) {
         </div>
         <p className='product__price'>
           <small>$</small>
-          <strong>{price}</strong>
+          <strong>
+            <NumberFormat
+              value={price}
+              thousandSeparator
+              displayType='text'
+              decimalScale={2}
+              fixedDecimalScale
+            />
+          </strong>
         </p>
       </div>
 

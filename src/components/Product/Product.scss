@@ -20,13 +20,18 @@
   }
   &__price {
     margin-top: 5px;
+    font-size: 17px;
+    color: #0f1111;
+    font-weight: 400;
   }
   &__rating {
     display: flex;
-    color: #e9c202;
+    color: #ffa41c;
     padding-top: 5px;
+    font-size: 17px;
     cursor: pointer;
     .product__comments {
+      font-size: 14px;
       padding-left: 5px;
       padding-bottom: 2px;
       color: #007185;
