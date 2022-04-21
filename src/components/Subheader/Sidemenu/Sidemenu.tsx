@@ -40,8 +40,8 @@ function Sidemenu({ isSidemenuOpen, closeSidemenu }: Props) {
           <ul className='sidemenu__list'>
             {SIDEMENU.map((category) => {
               return (
-                <>
-                  <li key={category.title}>
+                <React.Fragment key={category.title}>
+                  <li>
                     <span className='sidemenu__item sidemenu__title'>
                       {category.title}
                     </span>
@@ -59,7 +59,7 @@ function Sidemenu({ isSidemenuOpen, closeSidemenu }: Props) {
                       </li>
                     );
                   })}
-                </>
+                </React.Fragment>
               );
             })}
           </ul>

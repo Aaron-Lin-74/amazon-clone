@@ -1,0 +1,65 @@
+.hero {
+  height: 600px;
+  margin-bottom: -350px;
+  position: relative;
+  cursor: pointer;
+
+  &__btn {
+    border: 2px solid transparent;
+    font-size: 50px;
+    height: 250px;
+    width: 80px;
+    position: absolute;
+    background-color: transparent;
+    cursor: pointer;
+    z-index: 2;
+    &--left {
+      left: 0;
+    }
+    &--right {
+      top: 0;
+      right: 0;
+    }
+    &:focus {
+      border: 2px solid white;
+    }
+    svg: {
+      position: absolute;
+    }
+    svg:last-of-type {
+      position: absolute;
+      left: 10px;
+      color: white;
+    }
+  }
+  &__img {
+    display: block;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    mask-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 1) 250px,
+      rgba(0, 0, 0, 0)
+    );
+    transition: all 0.2s ease-out;
+    &--curr {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    &--prev {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    &--next {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+}

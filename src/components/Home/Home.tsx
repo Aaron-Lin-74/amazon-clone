@@ -1,17 +1,13 @@
 import React from 'react';
 import Product from '../Product/Product';
+import Hero from './Hero/Hero';
 import './Home.scss';
 
 function Home() {
   return (
-    <div className='home'>
+    <main className='home'>
       <div className='home__container'>
-        <img
-          className='home__img'
-          src='https://m.media-amazon.com/images/I/71C4clwraGL._SR3000,600_.jpg'
-          alt='hero'
-        />
-
+        <Hero />
         <div className='home__row'>
           <Product
             id='12321341'
@@ -69,7 +65,7 @@ function Home() {
           />
         </div>
       </div>
-    </div>
+    </main>
   );
 }
 
