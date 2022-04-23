@@ -1,7 +1,7 @@
 import React from 'react';
 import NumberFormat from 'react-number-format';
 import { CartActions } from '../../../store/types';
-import { useStateValue } from '../../StateProvider';
+import { useStateValue } from '../../../components/StateProvider';
 import './CartItem.scss';
 
 interface Props {

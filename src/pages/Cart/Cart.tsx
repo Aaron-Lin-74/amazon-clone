@@ -4,7 +4,7 @@ import NumberFormat from 'react-number-format';
 import Subtotal from './Subtotal/Subtotal';
 import { getCartTotal, getCartItemNumber } from '../../store/reducer';
 
-import { useStateValue } from '../StateProvider';
+import { useStateValue } from '../../components/StateProvider';
 import CartItem from './CartItem/CartItem';
 
 function Checkout() {
