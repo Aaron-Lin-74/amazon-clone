@@ -3,14 +3,14 @@ import { Routes, Route } from 'react-router-dom';
 import { User } from 'firebase/auth';
 import Header from './components/Header/Header';
 import Subheader from './components/Subheader/Subheader';
-import Home from './components/Home/Home';
-import Cart from './components/Cart/Cart';
+import Home from './pages/Home/Home';
+import Cart from './pages/Cart/Cart';
 import './App.css';
-import SignIn from './components/SignIn/SignIn';
+import SignIn from './pages/SignIn/SignIn';
 import { auth, onAuthStateChanged } from './firebase';
 import { UserActions } from './store/types';
 import { useStateValue } from './components/StateProvider';
-import Demo from './components/Demo/Demo';
+import Demo from './pages/Demo/Demo';
 
 function App() {
   const [, dispatch] = useStateValue();

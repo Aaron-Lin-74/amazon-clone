@@ -2,13 +2,14 @@ import React from 'react';
 import NumberFormat from 'react-number-format';
 import { AiFillCheckCircle } from 'react-icons/ai';
 import { getCartTotal, getCartItemNumber } from '../../../store/reducer';
-import { useStateValue } from '../../StateProvider';
+import { useStateValue } from '../../../components/StateProvider';
 import './Subtotal.scss';
 
 function Subtotal() {
   const [{ cart }] = useStateValue();
   const subtotal = getCartTotal(cart);
   const numberOfItems = getCartItemNumber(cart);
+
   return (
     <div className='subtotal'>
       <div className='subtotal__alert'>
