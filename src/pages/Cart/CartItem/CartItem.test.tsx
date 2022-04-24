@@ -9,7 +9,7 @@ describe('CheckoutProduct component', () => {
     title: 'mock title',
     price: 100,
     quantity: 1,
-    stock: 'In stock',
+    stock: 10,
     freeShipping: true,
   };
   test('should render the component', () => {
@@ -19,7 +19,7 @@ describe('CheckoutProduct component', () => {
       name: /mock title/i,
     });
     screen.getByText('mock title');
-    screen.getByText('In stock');
+    screen.getByText('In stock.');
     screen.getByText('Eligible for FREE Shipping');
     screen.getByText('This will be a gift');
     expect(

@@ -17,6 +17,10 @@
     .info__list {
       list-style: none;
       margin-top: 4px;
+      a {
+        text-decoration: none;
+        color: #0f1111;
+      }
       .info__title {
         font-size: 18px;
         line-height: 24px;
