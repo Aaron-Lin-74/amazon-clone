@@ -12,10 +12,19 @@ interface Props {
   image: string;
   price: number;
   rating: number;
+  stock: number;
   comments: number;
 }
 
-function ProductCard({ id, title, image, price, rating, comments }: Props) {
+function ProductCard({
+  id,
+  title,
+  image,
+  price,
+  rating,
+  stock,
+  comments,
+}: Props) {
   const [{ cart }, dispatch] = useStateValue();
   const addToCart = () => {
     // Check whether the product has been added to the cart
@@ -24,6 +33,7 @@ function ProductCard({ id, title, image, price, rating, comments }: Props) {
         type: CartActions.ADD_AGAIN,
         payload: {
           id,
+          quantity: 1,
         },
       });
     } else {
@@ -35,11 +45,8 @@ function ProductCard({ id, title, image, price, rating, comments }: Props) {
             title,
             image,
             price,
-            rating,
-            comments,
             quantity: 1,
-            stock: 'In stock',
-            freeShipping: true,
+            stock,
           },
         },
       });

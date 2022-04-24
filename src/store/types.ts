@@ -1,21 +1,18 @@
 import { User } from 'firebase/auth';
 
-export type Item = {
+export type CartItem = {
   id: string;
   title: string;
   price: number;
-  rating: number;
   image: string;
-  comments: number;
   quantity: number;
-  stock: string;
-  freeShipping: boolean;
+  stock: number;
 };
 
-export type Cart = Item[];
+export type Cart = CartItem[];
 
 export type InitialState = {
-  cart: Item[];
+  cart: Cart;
   user: User | null;
 };
 
@@ -35,8 +32,8 @@ export enum UserActions {
 }
 
 export type CartAction =
-  | { type: CartActions.ADD; payload: { item: Item } }
-  | { type: CartActions.ADD_AGAIN; payload: { id: string } }
+  | { type: CartActions.ADD; payload: { item: CartItem } }
+  | { type: CartActions.ADD_AGAIN; payload: { id: string; quantity: number } }
   | {
       type: CartActions.CHANGE_QUANTITY;
       payload: { id: string; quantity: number };

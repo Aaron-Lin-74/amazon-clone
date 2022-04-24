@@ -12,6 +12,7 @@ describe('Product component', () => {
         rating={2.5}
         image='http://mockimage'
         comments={200}
+        stock={10}
       />,
       { wrapper: BrowserRouter }
     );

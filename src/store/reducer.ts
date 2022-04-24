@@ -1,7 +1,7 @@
 import {
   InitialState,
   Cart,
-  Item,
+  CartItem,
   CartActions,
   CartAction,
   UserActions,
@@ -30,18 +30,20 @@ const reducer = (state: InitialState, action: CartAction | UserAction) => {
     case CartActions.ADD_AGAIN:
       return {
         ...state,
-        cart: state.cart.map((item: Item) => {
+        cart: state.cart.map((item: CartItem) => {
           if (item.id === action.payload.id) {
-            return { ...item, quantity: item.quantity + 1 };
+            return {
+              ...item,
+              quantity: item.quantity + action.payload.quantity,
+            };
           }
           return item;
         }),
       };
-
     case CartActions.CHANGE_QUANTITY:
       return {
         ...state,
-        cart: state.cart.map((item: Item) => {
+        cart: state.cart.map((item: CartItem) => {
           if (item.id === action.payload.id) {
             return { ...item, quantity: action.payload.quantity };
           }
@@ -51,7 +53,9 @@ const reducer = (state: InitialState, action: CartAction | UserAction) => {
     case CartActions.DELETE:
       return {
         ...state,
-        cart: state.cart.filter((item: Item) => item.id !== action.payload.id),
+        cart: state.cart.filter(
+          (item: CartItem) => item.id !== action.payload.id
+        ),
       };
     case UserActions.SIGN_IN:
       return {
