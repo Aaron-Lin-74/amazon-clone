@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import './Product.scss';
+import './ProductCard.scss';
 import { BsStarFill, BsStarHalf, BsStar } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import NumberFormat from 'react-number-format';
@@ -15,7 +15,7 @@ interface Props {
   comments: number;
 }
 
-function Product({ id, title, image, price, rating, comments }: Props) {
+function ProductCard({ id, title, image, price, rating, comments }: Props) {
   const [{ cart }, dispatch] = useStateValue();
   const addToCart = () => {
     // Check whether the product has been added to the cart
@@ -72,15 +72,17 @@ function Product({ id, title, image, price, rating, comments }: Props) {
     return buffer;
   };
   return (
-    <div className='product' key={id}>
-      <img className='product__img' src={image} alt={title} />
-      <div className='product__info'>
+    <div className='productCard' key={id}>
+      <Link to={`/product/${id}`}>
+        <img className='productCard__img' src={image} alt={title} />
+      </Link>
+      <div className='productCard__info'>
         <Link to={`/product/${id}`}>{title}</Link>
-        <div className='product__rating' title={`${rating} out of 5 stars`}>
+        <div className='productCard__rating' title={`${rating} out of 5 stars`}>
           {ratingToStars()}
-          <span className='product__comments'>{comments}</span>
+          <span className='productCard__comments'>{comments}</span>
         </div>
-        <p className='product__price'>
+        <p className='productCard__price'>
           <small>$</small>
           <strong>
             <NumberFormat
@@ -94,11 +96,11 @@ function Product({ id, title, image, price, rating, comments }: Props) {
         </p>
       </div>
 
-      <button type='button' className='product__btn' onClick={addToCart}>
+      <button type='button' className='productCard__btn' onClick={addToCart}>
         Add to Cart
       </button>
     </div>
   );
 }
 
-export default Product;
+export default ProductCard;
