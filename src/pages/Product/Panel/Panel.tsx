@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import NumberFormat from 'react-number-format';
 import './Panel.scss';
 import { HiOutlineLocationMarker } from 'react-icons/hi';
 import { Link, useNavigate } from 'react-router-dom';
+import toast, { Toaster } from 'react-hot-toast';
 import { useStateValue } from '../../../components/StateProvider';
 import { CartActions } from '../../../store/types';
 
@@ -17,6 +18,12 @@ function Panel({ id, title, image, price, stock }: Props) {
   const [quantity, setQuantity] = useState<number>(1);
   const [{ cart }, dispatch] = useStateValue();
   const navigate = useNavigate();
+
+  // Remove any toast notification when back to the page.
+  useEffect(() => {
+    toast.remove();
+  }, []);
+
   const addToCart = () => {
     // Check whether the product has been added to the cart
     if (cart.find((item) => item.id === id) !== undefined) {
@@ -42,9 +49,37 @@ function Panel({ id, title, image, price, stock }: Props) {
         },
       });
     }
+    toast.success(
+      <div style={{ display: 'flex' }}>
+        <img
+          src={image}
+          alt={title}
+          style={{ width: '40px', objectFit: 'contain', paddingRight: '10px' }}
+        />
+        <Link
+          to='/checkout'
+          style={{ textDecoration: 'none', color: '#0f1111' }}
+        >
+          <span>
+            Successfully added {title} &times; {quantity} to cart.
+          </span>
+        </Link>
+      </div>,
+      {
+        duration: 4000,
+        position: 'top-right',
+        style: {
+          width: '400px',
+        },
+      }
+    );
   };
   const buyNow = () => {
-    addToCart();
+    // Check whether the product has been added to the cart
+    if (cart.find((item) => item.id === id) === undefined) {
+      addToCart();
+      toast.remove();
+    }
     navigate('/checkout');
   };
 
@@ -149,6 +184,11 @@ function Panel({ id, title, image, price, stock }: Props) {
           </button>
         </Link>
       </div>
+      <Toaster
+        containerStyle={{
+          top: 100,
+        }}
+      />
     </div>
   );
 }

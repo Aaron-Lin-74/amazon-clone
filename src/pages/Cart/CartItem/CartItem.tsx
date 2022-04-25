@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import NumberFormat from 'react-number-format';
+import toast, { Toaster } from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import { CartActions } from '../../../store/types';
 import { useStateValue } from '../../../components/StateProvider';
@@ -15,13 +16,36 @@ interface Props {
 }
 function CartItem({ id, image, title, price, quantity, stock }: Props) {
   const [, dispatch] = useStateValue();
-
+  useEffect(() => {
+    toast.remove();
+  }, []);
   const removeFromBasket = (): void => {
     // remove the item from the basket
     dispatch({
       type: CartActions.DELETE,
       payload: { id },
     });
+    toast(
+      <div style={{ display: 'flex' }}>
+        <img
+          src={image}
+          alt={title}
+          style={{
+            width: '40px',
+            objectFit: 'contain',
+            paddingRight: '10px',
+          }}
+        />
+        <span>Successfully delete {title} from cart.</span>
+      </div>,
+      {
+        duration: 4000,
+        position: 'top-right',
+        style: {
+          width: '400px',
+        },
+      }
+    );
   };
 
   const handleQuantityChange = (
@@ -117,6 +141,11 @@ function CartItem({ id, image, title, price, quantity, stock }: Props) {
         </p>
       </div>
       <div className='cart__row' />
+      <Toaster
+        containerStyle={{
+          top: 100,
+        }}
+      />
     </>
   );
 }
