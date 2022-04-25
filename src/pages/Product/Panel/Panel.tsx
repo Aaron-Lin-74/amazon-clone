@@ -71,7 +71,6 @@ function Panel({ id, title, image, price, stock }: Props) {
   };
   return (
     <div className='panel'>
-      Panel {id}
       <p className='panel__price'>
         <small>$</small>
         <strong>
