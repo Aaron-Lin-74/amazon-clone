@@ -1,6 +1,6 @@
 # Amazon-Clone project
 
-## Amazon clone e-commence web application is developed by Aaron Lin for demonstration purpose.
+## Amazon clone e-commerce web application is developed by Aaron Lin for demonstration purpose.
 
 This is a full-stack web application developed using TypeScript, React, SCSS, and tested with Jest and React Testing Library.
 
