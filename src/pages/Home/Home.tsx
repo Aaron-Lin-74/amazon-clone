@@ -11,11 +11,12 @@ function Home() {
         <div className='home__row'>
           <ProductCard
             id='12321341'
-            title='The Lean Startup: How Constant Innovation Creates Radically Successful Businesses Paperback'
-            price={11.96}
-            rating={4.5}
-            image='https://images-na.ssl-images-amazon.com/images/I/51Zymoq7UnL._SX325_BO1,204,203,200_.jpg'
-            comments={180}
+            title='Anker Power Bank, PowerCore 26800mAh Portable Charger with Dual Input Port and Double-Speed Recharging, 3 USB Ports External Battery for iPhone, iPad, Samsung Galaxy, Android and Other Smart Devices'
+            price={90.99}
+            rating={4.7}
+            image='https://m.media-amazon.com/images/I/61vj2BPDpuL._AC_SX425_.jpg'
+            comments={27157}
+            stock={100}
           />
           <ProductCard
             id='49538094'
@@ -24,6 +25,7 @@ function Home() {
             rating={4}
             image='https://images-na.ssl-images-amazon.com/images/I/81O%2BGNdkzKL._AC_SX450_.jpg'
             comments={5}
+            stock={100}
           />
         </div>
 
@@ -35,6 +37,7 @@ function Home() {
             rating={3}
             image='https://images-na.ssl-images-amazon.com/images/I/71Swqqe7XAL._AC_SX466_.jpg'
             comments={25}
+            stock={100}
           />
           <ProductCard
             id='23445930'
@@ -43,6 +46,7 @@ function Home() {
             rating={5}
             image='https://media.very.co.uk/i/very/P6LTG_SQ1_0000000071_CHARCOAL_SLf?$300x400_retinamobilex2$'
             comments={1440}
+            stock={100}
           />
           <ProductCard
             id='3254354345'
@@ -51,6 +55,7 @@ function Home() {
             rating={4}
             image='https://images-na.ssl-images-amazon.com/images/I/816ctt5WV5L._AC_SX385_.jpg'
             comments={260}
+            stock={100}
           />
         </div>
 
@@ -62,6 +67,7 @@ function Home() {
             rating={4}
             image='https://images-na.ssl-images-amazon.com/images/I/6125mFrzr6L._AC_SX355_.jpg'
             comments={360}
+            stock={100}
           />
         </div>
       </div>
