@@ -1,3 +1,4 @@
+@use 'src/styles/mixins';
 .panel {
   border: 1px #d5d9d9 solid;
   border-radius: 8px;
@@ -43,30 +44,11 @@
     margin-bottom: 20px;
 
     .panel__btn {
-      width: 100%;
-      box-shadow: 0 2px 5px 0 rgb(213 217 217 / 50%);
-      border: none;
-      border-radius: 8px;
-      margin-top: 10px;
-      color: #0f1111;
-      cursor: pointer;
-      font-size: 13px;
-      line-height: 29px;
-      outline: 0;
-      padding: 0 10px;
-      white-space: nowrap;
-      border-radius: 20px;
       &--yellow {
-        background: #ffd814;
-        &:hover {
-          background-color: #e9c202;
-        }
+        @include mixins.button(#ffd814, #e9c202);
       }
       &--orange {
-        background: #ffa41c;
-        &:hover {
-          background-color: #c77204;
-        }
+        @include mixins.button(#ffa41c, #c77204);
       }
     }
   }
@@ -84,18 +66,6 @@
     }
   }
   .wishList__btn {
-    width: 100%;
-    box-shadow: 0 1px 0 rgb(255 255 255 / 60%) inset;
-    background: linear-gradient(to bottom, #f7f8fa, #e7e9ec);
-    border: 1px solid #0f1111;
-    border-radius: 3px;
-    margin-top: 10px;
-    color: #0f1111;
-    cursor: pointer;
-    font-size: 13px;
-    line-height: 29px;
-    outline: 0;
-    padding: 0 10px;
-    white-space: nowrap;
+    @include mixins.paleButton;
   }
 }
