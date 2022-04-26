@@ -12,6 +12,7 @@ import { UserActions } from './store/types';
 import { useStateValue } from './components/StateProvider';
 import Demo from './pages/Demo/Demo';
 import Product from './pages/Product/Product';
+import Footer from './components/Footer/Footer';
 
 function App() {
   const [, dispatch] = useStateValue();
@@ -35,6 +36,7 @@ function App() {
               <Header />
               <Subheader />
               <Home />
+              <Footer />
             </>
           }
         />
@@ -45,6 +47,7 @@ function App() {
               <Header />
               <Subheader />
               <Cart />
+              <Footer />
             </>
           }
         />
@@ -55,6 +58,7 @@ function App() {
               <Header />
               <Subheader />
               <Product />
+              <Footer />
             </>
           }
         />
