@@ -36,6 +36,7 @@
     height: 100%;
     position: absolute;
     left: 0;
+    z-index: -1;
     mask-image: linear-gradient(
       to bottom,
       rgba(0, 0, 0, 1) 250px,
