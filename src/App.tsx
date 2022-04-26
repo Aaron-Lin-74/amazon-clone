@@ -11,6 +11,7 @@ import { auth, onAuthStateChanged } from './firebase';
 import { UserActions } from './store/types';
 import { useStateValue } from './components/StateProvider';
 import Demo from './pages/Demo/Demo';
+import Product from './pages/Product/Product';
 
 function App() {
   const [, dispatch] = useStateValue();
@@ -44,6 +45,16 @@ function App() {
               <Header />
               <Subheader />
               <Cart />
+            </>
+          }
+        />
+        <Route
+          path='/product/:id'
+          element={
+            <>
+              <Header />
+              <Subheader />
+              <Product />
             </>
           }
         />

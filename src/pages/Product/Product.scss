@@ -1,0 +1,130 @@
+@use '/src/styles/mixins';
+.product {
+  background-color: #fff;
+  min-height: 50vh;
+  &__container {
+    min-width: 1000px;
+    max-width: 1500px;
+    padding: 20px 18px 18px;
+    margin: 0 auto;
+    .container__leftColumn {
+      position: sticky;
+      position: -webkit-sticky;
+      top: 4px;
+      height: 100%;
+      float: left;
+      width: 36.5%;
+    }
+    .container__centerColumn {
+      margin-left: 38%;
+      margin-right: 270px;
+      margin-bottom: 25px;
+      .product__title {
+        word-break: break-word;
+        font-size: 24px;
+        line-height: 32px;
+      }
+      .product__price {
+        font-size: 28px;
+      }
+
+      .product__icons {
+        margin: 10px 0 22px;
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px solid #ddd;
+        .icons__wrapper {
+          width: 375px;
+        }
+        .icons__container {
+          float: left;
+          min-height: 1px;
+          overflow: visible;
+          width: 25%;
+          img {
+            height: 35px;
+            width: 35px;
+            border-radius: 50%;
+          }
+          p {
+            margin-top: 8px;
+            color: #007185;
+            font-size: 12px;
+            line-height: 16px;
+          }
+        }
+      }
+      .product__featureOverview {
+        margin: 8px 0;
+        tr {
+          margin-bottom: 8px;
+          vertical-align: text-top;
+        }
+        td:first-of-type {
+          width: 26.18%;
+          font-weight: 700;
+        }
+      }
+      .product__featureBullets {
+        .featureBullets__about {
+          font-size: 16px;
+          line-height: 24px;
+          font-weight: 700;
+          padding-bottom: 4px;
+        }
+        ul {
+          margin: 0 0 0 18px;
+          color: #0f1111;
+          li {
+            word-wrap: break-word;
+            margin: 0;
+          }
+        }
+      }
+    }
+    .container__rightColumn {
+      float: right;
+      width: 244px;
+      margin-left: 20px;
+    }
+  }
+  &__description {
+    width: 100%;
+    max-width: 970px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin: auto;
+    .description__image {
+      width: 100%;
+      object-fit: contain;
+    }
+  }
+  &__noticeContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .product__noticeBox {
+      width: 500px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border-radius: 5px;
+      border: 1px solid lightgray;
+      padding: 20px 26px;
+      margin: 100px auto;
+    }
+
+    h1 {
+      padding: 20px;
+    }
+    button {
+      @include mixins.paleButton;
+    }
+  }
+  hr {
+    @include mixins.defaultHr;
+  }
+}

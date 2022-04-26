@@ -1,8 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Demo.scss';
 
 function Demo() {
+  const navigate = useNavigate();
+  const handleGoBack = () => {
+    navigate(-1);
+  };
   return (
     <main className='demo'>
       <div className='demo__container'>
@@ -15,11 +19,20 @@ function Demo() {
           this project is to implement the main functionalities of the
           E-commerce web application.
         </p>
-        <Link to='/'>
-          <button type='button' className='demo__btn'>
-            Back to home
+        <div className='demoBtn__container'>
+          <button
+            type='button'
+            className='demo__btn demo__btn--light'
+            onClick={handleGoBack}
+          >
+            Back
           </button>
-        </Link>
+          <Link to='/'>
+            <button type='button' className='demo__btn'>
+              Go to home
+            </button>
+          </Link>
+        </div>
       </div>
     </main>
   );

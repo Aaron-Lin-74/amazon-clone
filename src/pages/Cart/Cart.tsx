@@ -30,7 +30,6 @@ function Checkout() {
                 price={item.price}
                 quantity={item.quantity}
                 stock={item.stock}
-                freeShipping={item.freeShipping}
               />
             );
           })}

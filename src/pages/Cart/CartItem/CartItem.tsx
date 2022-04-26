@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import NumberFormat from 'react-number-format';
+import toast, { Toaster } from 'react-hot-toast';
+import { Link } from 'react-router-dom';
 import { CartActions } from '../../../store/types';
 import { useStateValue } from '../../../components/StateProvider';
 import './CartItem.scss';
@@ -10,26 +12,40 @@ interface Props {
   title: string;
   price: number;
   quantity: number;
-  stock: string;
-  freeShipping: boolean;
+  stock: number;
 }
-function CartItem({
-  id,
-  image,
-  title,
-  price,
-  quantity,
-  stock,
-  freeShipping,
-}: Props) {
+function CartItem({ id, image, title, price, quantity, stock }: Props) {
   const [, dispatch] = useStateValue();
-
+  useEffect(() => {
+    toast.remove();
+  }, []);
   const removeFromBasket = (): void => {
     // remove the item from the basket
     dispatch({
       type: CartActions.DELETE,
       payload: { id },
     });
+    toast(
+      <div style={{ display: 'flex' }}>
+        <img
+          src={image}
+          alt={title}
+          style={{
+            width: '40px',
+            objectFit: 'contain',
+            paddingRight: '10px',
+          }}
+        />
+        <span>Successfully delete {title} from cart.</span>
+      </div>,
+      {
+        duration: 4000,
+        position: 'top-right',
+        style: {
+          width: '400px',
+        },
+      }
+    );
   };
 
   const handleQuantityChange = (
@@ -48,23 +64,27 @@ function CartItem({
   return (
     <>
       <div className='cartItem'>
-        <img className='cartItem__image' src={image} alt={title} />
+        <Link to={`/product/${id}`}>
+          <img className='cartItem__image' src={image} alt={title} />
+        </Link>
 
         <div className='cartItem__info'>
           <ul className='info__list'>
             <li>
-              <p className='info__title'>{title}</p>
+              <Link to={`/product/${id}`}>
+                <p className='info__title'>{title}</p>
+              </Link>
             </li>
             <li>
-              <p className='info__stock'>{stock}</p>
+              <p className='info__stock'>
+                {stock > 0 ? 'In stock.' : 'Out of stock'}
+              </p>
             </li>
-            {freeShipping && (
-              <li>
-                <span className='info__shipping'>
-                  Eligible for FREE Shipping
-                </span>
-              </li>
-            )}
+
+            <li>
+              <span className='info__shipping'>Eligible for FREE Shipping</span>
+            </li>
+
             <li>
               <div className='info__gift'>
                 <input type='checkbox' name='isToBeGiftWrapped' value='1' />
@@ -121,6 +141,11 @@ function CartItem({
         </p>
       </div>
       <div className='cart__row' />
+      <Toaster
+        containerStyle={{
+          top: 100,
+        }}
+      />
     </>
   );
 }

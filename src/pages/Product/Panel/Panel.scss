@@ -1,0 +1,71 @@
+@use 'src/styles/mixins';
+.panel {
+  border: 1px #d5d9d9 solid;
+  border-radius: 8px;
+  padding: 14px 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  &__price {
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+  &__delivery {
+    p {
+      margin-bottom: 20px;
+    }
+    .delivery__text {
+      color: #007185;
+    }
+    .delivery__location {
+      color: #007185;
+    }
+  }
+  &__cart {
+    margin-bottom: 20px;
+    .panel__text {
+      color: #007600;
+      margin-bottom: 20px;
+    }
+    label {
+      span {
+        padding-right: 5px;
+      }
+      #product__quantity {
+        border: 1px solid #ddd;
+        border-radius: 4px 4px 4px 4px;
+        padding: 3px;
+        transition: all 0.1s linear;
+        line-height: 19px;
+      }
+    }
+  }
+  &__btnContainer {
+    margin-bottom: 20px;
+
+    .panel__btn {
+      &--yellow {
+        @include mixins.button(#ffd814, #e9c202);
+      }
+      &--orange {
+        @include mixins.button(#ffa41c, #c77204);
+      }
+    }
+  }
+  &__shippment {
+    margin-bottom: 20px;
+    color: #565959;
+    font-size: 12px;
+    line-height: 16px;
+  }
+  &__gift {
+    margin-bottom: 20px;
+    span {
+      padding-left: 5px;
+      font-weight: 400;
+    }
+  }
+  .wishList__btn {
+    @include mixins.paleButton;
+  }
+}
