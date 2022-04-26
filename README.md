@@ -1,46 +1,28 @@
-# Getting Started with Create React App
+# Amazon-Clone project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Amazon clone e-commence web application is developed by Aaron Lin for demonstration purpose.
 
-## Available Scripts
+This is a full-stack web application developed using TypeScript, React, SCSS, and tested with Jest and React Testing Library.
 
-In the project directory, you can run:
+The live application is hosted using firebase, please find the link below:
 
-### `npm start`
+https://aaron-lin-ecommence.web.app/
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Front-end
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- For the React front-end application, we use function components to create independent, resuable UI pieces, and React-Router-dom to perform the browser router.
+- Used React context API and useReducer hook to manage the global state of the application.
+- We SCSS to style the components.
+- Set up Eslint with Airbnb Style Guide.
 
-### `npm test`
+## Back-end
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Used Firebase Authentication to handle user sign in, sign up and sign out.
 
-### `npm run build`
+## Deploy
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+We use Github Action to perform CI/CD, that automatically run the test on every pull request, and deploy on every merge to master branch.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## License
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+  [MIT](LICENSE)
