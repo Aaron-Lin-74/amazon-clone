@@ -6,7 +6,7 @@ This is a full-stack web application developed using TypeScript, React, SCSS, an
 
 The live application is hosted using firebase, please find the link below:
 
-https://aaron-lin-ecommence.web.app/
+https://clone-b1e10.web.app/
 
 ## Front-end
 
