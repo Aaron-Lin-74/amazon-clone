@@ -1,13 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { VscChevronLeft, VscChevronRight } from 'react-icons/vsc';
 import { Link } from 'react-router-dom';
-import HEROIMAGES from '../../../constants/heroImages';
+import sanityClient from '../../../client';
+import { HeroImagesType } from '../../../types';
+
 import './Hero.scss';
 
 function Hero() {
   const [currentIdx, setCurrentIdx] = useState<number>(0);
+  const [heroImages, setHeroImages] = useState<HeroImagesType | null>(null);
+
+  useEffect(() => {
+    sanityClient
+      .fetch('*[_type == "heroImage"]| order(id asc)')
+      .then((data) => setHeroImages(data))
+      .catch(console.error);
+  }, []);
+
   const loopIndex = (num: number): number => {
-    const lastIndex = HEROIMAGES.length - 1;
+    if (!heroImages) return -1;
+    const lastIndex = heroImages.length - 1;
     if (num < 0) {
       return lastIndex;
     }
@@ -16,6 +28,7 @@ function Hero() {
     }
     return num;
   };
+
   const prevImage = (): void => {
     setCurrentIdx((cur) => loopIndex(cur - 1));
   };
@@ -23,12 +36,13 @@ function Hero() {
     setCurrentIdx((cur) => loopIndex(cur + 1));
   };
   const setClassName = (id: number): string => {
+    if (!heroImages) return '';
     if (id === currentIdx) {
       return 'hero__img';
     }
     if (
       id === currentIdx - 1 ||
-      (currentIdx === 0 && id === HEROIMAGES.length - 1)
+      (currentIdx === 0 && id === heroImages.length - 1)
     ) {
       return 'hero__img hero__img--prev';
     }
@@ -47,13 +61,18 @@ function Hero() {
         <VscChevronLeft />
         <VscChevronLeft />
       </button>
-      {HEROIMAGES.map((item) => {
-        return (
-          <Link to={item.href} key={item.id} className={setClassName(item.id)}>
-            <img src={item.src} alt='hero' />
-          </Link>
-        );
-      })}
+      {heroImages &&
+        heroImages.map((item) => {
+          return (
+            <Link
+              to={item.href}
+              key={item.id}
+              className={setClassName(item.id)}
+            >
+              <img src={item.src} alt={item.description} />
+            </Link>
+          );
+        })}
       <button
         type='button'
         className='hero__btn hero__btn--right'
