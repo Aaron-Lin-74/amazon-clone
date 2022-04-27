@@ -13,17 +13,17 @@ describe('Sidemenu component', () => {
     screen.getByRole('link', {
       name: /hello, sign in/i,
     });
-    screen.getByText(/trending/i);
-    screen.getByRole('link', { name: /best sellers/i });
-    screen.getByRole('link', { name: /new releases/i });
-    screen.getByRole('link', { name: /movers and shakers/i });
-    screen.getByText(/digital content and devices/i);
-    screen.getByRole('link', { name: /echo & alexa/i });
-    screen.getByRole('link', { name: /kindle e-readers & books/i });
-    screen.getByRole('link', { name: /amazon fire tv/i });
-    screen.getByRole('link', { name: /amazon prime video/i });
-    screen.getByRole('link', { name: /amazon music/i });
-    screen.getByRole('link', { name: /audible audiobooks/i });
+    screen.findByText(/trending/i);
+    screen.findByRole('link', { name: /best sellers/i });
+    screen.findByRole('link', { name: /new releases/i });
+    screen.findByRole('link', { name: /movers and shakers/i });
+    screen.findByText(/digital content and devices/i);
+    screen.findByRole('link', { name: /echo & alexa/i });
+    screen.findByRole('link', { name: /kindle e-readers & books/i });
+    screen.findByRole('link', { name: /amazon fire tv/i });
+    screen.findByRole('link', { name: /amazon prime video/i });
+    screen.findByRole('link', { name: /amazon music/i });
+    screen.findByRole('link', { name: /audible audiobooks/i });
   });
   test('should close sidemenu when a link is clicked', () => {
     render(
