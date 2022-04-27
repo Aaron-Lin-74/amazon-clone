@@ -1,34 +1,36 @@
-import { render, screen, within } from '@testing-library/react';
+import { render, screen, within, act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { BrowserRouter } from 'react-router-dom';
 import Subheader from './Subheader';
 
 describe('Subheader component', () => {
   test('should render the component', () => {
-    render(<Subheader />, { wrapper: BrowserRouter });
+    act(() => {
+      render(<Subheader />, { wrapper: BrowserRouter });
+    });
     const navbar = document.getElementById('navbar_main_links')!;
     screen.getByRole('button', {
       name: /all/i,
     });
-    within(navbar).getByRole('link', {
+    within(navbar).findByRole('link', {
       name: /best sellers/i,
     });
-    within(navbar).getByRole('link', {
+    within(navbar).findByRole('link', {
       name: /customer service/i,
     });
-    within(navbar).getByRole('link', {
+    within(navbar).findByRole('link', {
       name: /today's deals/i,
     });
-    within(navbar).getByRole('link', {
+    within(navbar).findByRole('link', {
       name: /prime/i,
     });
-    within(navbar).getByRole('link', {
+    within(navbar).findByRole('link', {
       name: /fashion/i,
     });
-    within(navbar).getByRole('link', {
+    within(navbar).findByRole('link', {
       name: /music/i,
     });
-    within(navbar).getByRole('link', {
+    within(navbar).findByRole('link', {
       name: /new releases/i,
     });
     screen.getByRole('img', {

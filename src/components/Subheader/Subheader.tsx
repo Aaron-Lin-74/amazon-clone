@@ -1,12 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FaBars } from 'react-icons/fa';
-import NAVBARLINKS from '../../constants/navbarLinks';
+// import NAVBARLINKS from '../../constants/navbarLinks';
 import './Subheader.scss';
 import Sidemenu from './Sidemenu/Sidemenu';
+import sanityClient from '../../client';
+import { NavbarLink } from '../../types';
 
 function Subheader() {
   const [isSidemenuOpen, setIsSidemenuOpen] = useState<boolean>(false);
+  const [navbarLinks, setNavbarLinks] = useState<NavbarLink[] | null>(null);
+
+  useEffect(() => {
+    sanityClient
+      .fetch('*[_type == "navbarLink"] | order(id asc)')
+      .then((data) => setNavbarLinks(data))
+      .catch(console.error);
+  }, []);
+
   const toggleSidemenu = (): void => {
     setIsSidemenuOpen(!isSidemenuOpen);
   };
@@ -26,13 +37,15 @@ function Subheader() {
         <span>All</span>
       </div>
       <div className='navbar__main' id='navbar_main_links'>
-        {NAVBARLINKS.map((link) => {
-          return (
-            <Link to={link.href} key={link.id} className='navbar__link'>
-              {link.name}
-            </Link>
-          );
-        })}
+        {navbarLinks &&
+          navbarLinks.map((link) => {
+            return (
+              // eslint-disable-next-line react/no-array-index-key
+              <Link to={link.href} key={link.id} className='navbar__link'>
+                {link.name}
+              </Link>
+            );
+          })}
       </div>
       <div className='navbar__right'>
         <Link to='/'>
