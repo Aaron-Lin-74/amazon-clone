@@ -1,7 +1,20 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import { screen, render } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
+import { StateProvider } from '../../../components/StateProvider';
+import reducer, { initialState } from '../../../store/reducer';
 import CartItem from './CartItem';
 
+jest.mock('react-hot-toast', () => {
+  return {
+    __esModule: true,
+    default: { remove: jest.fn() },
+    Toaster: () => {
+      // eslint-disable-next-line react/jsx-no-useless-fragment
+      return <></>;
+    },
+  };
+});
 describe('CheckoutProduct component', () => {
   const mockProduct = {
     id: '1',
@@ -12,9 +25,16 @@ describe('CheckoutProduct component', () => {
     stock: 10,
     freeShipping: true,
   };
+  function renderCartItem() {
+    return render(
+      <StateProvider initialState={initialState} reducer={reducer}>
+        <CartItem {...mockProduct} />
+      </StateProvider>,
+      { wrapper: BrowserRouter }
+    );
+  }
   test('should render the component', () => {
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    render(<CartItem {...mockProduct} />, { wrapper: BrowserRouter });
+    renderCartItem();
     screen.getByRole('img', {
       name: /mock title/i,
     });
