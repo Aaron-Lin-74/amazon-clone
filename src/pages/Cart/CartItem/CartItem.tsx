@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import NumberFormat from 'react-number-format';
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import { CartActions } from '../../../store/types';
 import { useStateValue } from '../../../components/StateProvider';
@@ -141,11 +141,6 @@ function CartItem({ id, image, title, price, quantity, stock }: Props) {
         </p>
       </div>
       <div className='cart__row' />
-      <Toaster
-        containerStyle={{
-          top: 100,
-        }}
-      />
     </>
   );
 }
