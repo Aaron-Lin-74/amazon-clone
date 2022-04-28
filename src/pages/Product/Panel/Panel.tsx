@@ -3,7 +3,7 @@ import NumberFormat from 'react-number-format';
 import './Panel.scss';
 import { HiOutlineLocationMarker } from 'react-icons/hi';
 import { Link, useNavigate } from 'react-router-dom';
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import { useStateValue } from '../../../components/StateProvider';
 import { CartActions } from '../../../store/types';
 
@@ -184,11 +184,6 @@ function Panel({ id, title, image, price, stock }: Props) {
           </button>
         </Link>
       </div>
-      <Toaster
-        containerStyle={{
-          top: 100,
-        }}
-      />
     </div>
   );
 }

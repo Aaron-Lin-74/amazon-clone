@@ -3,7 +3,7 @@ import './ProductCard.scss';
 import { BsStarFill, BsStarHalf, BsStar } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import NumberFormat from 'react-number-format';
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import { useStateValue } from '../StateProvider';
 import { CartActions } from '../../store/types';
 
@@ -140,11 +140,6 @@ function ProductCard({
       <button type='button' className='productCard__btn' onClick={addToCart}>
         Add to Cart
       </button>
-      <Toaster
-        containerStyle={{
-          top: 100,
-        }}
-      />
     </div>
   );
 }

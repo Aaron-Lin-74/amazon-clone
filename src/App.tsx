@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { User } from 'firebase/auth';
+import { Toaster } from 'react-hot-toast';
 import Header from './components/Header/Header';
 import Subheader from './components/Subheader/Subheader';
 import Home from './pages/Home/Home';
@@ -70,10 +71,16 @@ function App() {
               <Header />
               <Subheader />
               <Demo />
+              <Footer />
             </>
           }
         />
       </Routes>
+      <Toaster
+        containerStyle={{
+          top: 100,
+        }}
+      />
     </div>
   );
 }
