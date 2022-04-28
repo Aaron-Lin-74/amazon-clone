@@ -30,6 +30,7 @@
     "react-hooks/exhaustive-deps": "warn",
     "react/react-in-jsx-scope": "off",
     "jest/expect-expect": "off",
+    "no-underscore-dangle": "off",
     "prettier/prettier": [
       "warn",
       {
