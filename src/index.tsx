@@ -6,6 +6,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import reducer, { initialState } from './store/reducer';
 import { StateProvider } from './components/StateProvider';
+import ScrollToTop from './components/ScrollToTop';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -14,7 +15,9 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <StateProvider initialState={initialState} reducer={reducer}>
-        <App />
+        <ScrollToTop>
+          <App />
+        </ScrollToTop>
       </StateProvider>
     </BrowserRouter>
   </React.StrictMode>
