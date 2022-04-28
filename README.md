@@ -18,10 +18,15 @@ https://clone-b1e10.web.app/
 ## Back-end
 
 - Used Firebase Authentication to handle user sign in, sign up and sign out.
+- Used Sanity to perform the CMS, to store the structured data.
 
 ## Deploy
 
 We use Github Action to perform CI/CD, that automatically run the test on every pull request, and deploy on every merge to master branch.
+
+## Test
+
+Jest and React Testing Library.
 
 ## License
 
