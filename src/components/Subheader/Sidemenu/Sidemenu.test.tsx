@@ -3,6 +3,22 @@ import { BrowserRouter } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
 import Sidemenu from './Sidemenu';
 
+jest.mock('@sanity/client', () => {
+  return function sanityClient() {
+    return {
+      fetch: () => {
+        return Promise.resolve([
+          {
+            id: 0,
+            src: 'mock src',
+            description: 'mock desc',
+            href: 'mock href',
+          },
+        ]);
+      },
+    };
+  };
+});
 describe('Sidemenu component', () => {
   const mockCloseSidemenu = jest.fn();
   test('should render the component', () => {

@@ -3,6 +3,23 @@ import userEvent from '@testing-library/user-event';
 import { BrowserRouter } from 'react-router-dom';
 import Subheader from './Subheader';
 
+jest.mock('@sanity/client', () => {
+  return function sanityClient() {
+    return {
+      fetch: () => {
+        return Promise.resolve([
+          {
+            id: 0,
+            src: 'mock src',
+            description: 'mock desc',
+            href: 'mock href',
+          },
+        ]);
+      },
+    };
+  };
+});
+
 describe('Subheader component', () => {
   test('should render the component', () => {
     act(() => {

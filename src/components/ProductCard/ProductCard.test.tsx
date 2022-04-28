@@ -2,6 +2,17 @@ import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import ProductCard from './ProductCard';
 
+jest.mock('react-hot-toast', () => {
+  return {
+    __esModule: true,
+    default: { remove: jest.fn() },
+    Toaster: () => {
+      // eslint-disable-next-line react/jsx-no-useless-fragment
+      return <></>;
+    },
+  };
+});
+
 describe('Product component', () => {
   test('should render the component', () => {
     render(
@@ -13,6 +24,7 @@ describe('Product component', () => {
         image='http://mockimage'
         comments={200}
         stock={10}
+        slug='mock slug'
       />,
       { wrapper: BrowserRouter }
     );
