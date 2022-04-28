@@ -17,6 +17,12 @@ function Hero() {
       .catch(console.error);
   }, []);
 
+  useEffect(() => {
+    if (heroImages) {
+      setCurrentIdx(Math.floor(Math.random() * heroImages.length));
+    }
+  }, [heroImages]);
+
   const loopIndex = (num: number): number => {
     if (!heroImages) return -1;
     const lastIndex = heroImages.length - 1;
