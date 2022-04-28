@@ -64,6 +64,9 @@
           width: 26.18%;
           font-weight: 700;
         }
+        td:last-of-type {
+          padding-left: 10px;
+        }
       }
       .product__featureBullets {
         .featureBullets__about {
@@ -84,18 +87,18 @@
     }
     .container__rightColumn {
       float: right;
-      width: 244px;
+      width: 250px;
       margin-left: 20px;
     }
   }
   &__description {
     width: 100%;
-    max-width: 970px;
+    max-width: 1500px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 15px;
     margin: auto;
+    padding: 20px 18px;
     .description__image {
       width: 100%;
       object-fit: contain;

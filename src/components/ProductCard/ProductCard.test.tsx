@@ -1,21 +1,42 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
+import reducer, { initialState } from '../../store/reducer';
+import { StateProvider } from '../StateProvider';
 import ProductCard from './ProductCard';
 
+jest.mock('react-hot-toast', () => {
+  return {
+    __esModule: true,
+    default: { remove: jest.fn() },
+    Toaster: () => {
+      // eslint-disable-next-line react/jsx-no-useless-fragment
+      return <></>;
+    },
+  };
+});
+
 describe('Product component', () => {
-  test('should render the component', () => {
-    render(
-      <ProductCard
-        id='112'
-        title='mock title'
-        price={100.0}
-        rating={2.5}
-        image='http://mockimage'
-        comments={200}
-        stock={10}
-      />,
+  const mockProps = {
+    id: '111',
+    title: 'mock title',
+    price: 100.0,
+    rating: 2.5,
+    image: 'http://mockimage',
+    comments: 200,
+    stock: 10,
+    slug: 'mock slug',
+  };
+  function renderProductCard() {
+    return render(
+      <StateProvider initialState={initialState} reducer={reducer}>
+        <ProductCard {...mockProps} />
+      </StateProvider>,
       { wrapper: BrowserRouter }
     );
+  }
+  test('should render the component', () => {
+    renderProductCard();
     screen.getByRole('img', {
       name: /mock title/i,
     });

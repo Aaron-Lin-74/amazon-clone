@@ -1,10 +1,21 @@
 import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
+import { StateProvider } from '../../components/StateProvider';
+import reducer, { initialState } from '../../store/reducer';
 import Cart from './Cart';
+
+function renderCart() {
+  return render(
+    <StateProvider initialState={initialState} reducer={reducer}>
+      <Cart />
+    </StateProvider>,
+    { wrapper: BrowserRouter }
+  );
+}
 
 describe('Checkout component', () => {
   test('should render the component', () => {
-    render(<Cart />, { wrapper: BrowserRouter });
+    renderCart();
     screen.getByRole('heading', {
       name: 'Your Amazon Cart is empty.',
     });

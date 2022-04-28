@@ -1,23 +1,34 @@
 import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-
 import { BrowserRouter } from 'react-router-dom';
 import Gallery from './Gallery';
 
+jest.mock('@sanity/image-url', () => {
+  return function imageUrlBuilder() {
+    return {
+      builder: { image: jest.fn().mockResolvedValue('mockurl') },
+    };
+  };
+});
+jest.mock('../../../client', () => {
+  jest.requireActual('../../../client');
+  return {
+    urlFor: () => {
+      return { url: () => 'mock src' };
+    },
+  };
+});
 describe('Gallery component', () => {
-  const mockImages = [
-    {
-      thumbnail: 'http://test.thumbnail1.jpg',
-      image: 'http://test.image1.jpg',
-    },
-    {
-      thumbnail: 'http://test.thumbnail2.jpg',
-      image: 'http://test.image2.jpg',
-    },
-  ];
+  const mockImages = ['http://test.image1.jpg', 'http://test.image2.jpg'];
 
+  const mockThumbnails = [
+    'http://test.thumbnail1.jpg',
+    'http://test.thumbnail2.jpg',
+  ];
   test('should render the component', () => {
-    render(<Gallery images={mockImages} />, { wrapper: BrowserRouter });
+    render(<Gallery images={mockImages} thumbnails={mockThumbnails} />, {
+      wrapper: BrowserRouter,
+    });
     expect(document.getElementsByClassName('gallery__list')[0]).toHaveClass(
       'gallery__list--active'
     );
@@ -26,7 +37,9 @@ describe('Gallery component', () => {
   });
 
   test('should change image list class when hover the related thumbnail', () => {
-    render(<Gallery images={mockImages} />, { wrapper: BrowserRouter });
+    render(<Gallery images={mockImages} thumbnails={mockThumbnails} />, {
+      wrapper: BrowserRouter,
+    });
     expect(document.getElementsByClassName('gallery__list')[0]).toHaveClass(
       'gallery__list--active'
     );

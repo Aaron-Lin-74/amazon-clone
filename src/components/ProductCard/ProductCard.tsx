@@ -15,6 +15,7 @@ interface Props {
   rating: number;
   stock: number;
   comments: number;
+  slug: string;
 }
 
 function ProductCard({
@@ -25,11 +26,13 @@ function ProductCard({
   rating,
   stock,
   comments,
+  slug,
 }: Props) {
   const [{ cart }, dispatch] = useStateValue();
   useEffect(() => {
     toast.remove();
   }, []);
+
   const addToCart = () => {
     // Check whether the product has been added to the cart
     if (cart.find((item) => item.id === id) !== undefined) {
@@ -55,6 +58,7 @@ function ProductCard({
         },
       });
     }
+
     // Show the success add to cart notification
     toast.success(
       <div style={{ display: 'flex' }}>
@@ -110,11 +114,11 @@ function ProductCard({
   };
   return (
     <div className='productCard' key={id}>
-      <Link to={`/product/${id}`}>
+      <Link to={`/product/${slug}`}>
         <img className='productCard__img' src={image} alt={title} />
       </Link>
       <div className='productCard__info'>
-        <Link to={`/product/${id}`}>{title}</Link>
+        <Link to={`/product/${slug}`}>{title}</Link>
         <div className='productCard__rating' title={`${rating} out of 5 stars`}>
           {ratingToStars()}
           <span className='productCard__comments'>{comments}</span>
