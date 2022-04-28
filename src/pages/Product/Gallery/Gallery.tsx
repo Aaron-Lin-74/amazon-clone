@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import { urlFor } from '../../../client';
 import './Gallery.scss';
 
 type Props = {
-  images: { thumbnail: string; image: string }[];
+  images: string[];
+  thumbnails: string[];
 };
-function Gallery({ images }: Props) {
+function Gallery({ images, thumbnails }: Props) {
   const magnifierHeight: number = 500;
   const magnifierWidth: number = 500;
   const zoomLevel: number = 2;
@@ -25,7 +27,7 @@ function Gallery({ images }: Props) {
     <div className='gallery'>
       <div className='gallery__thumbnails'>
         <ul>
-          {images.map((image, idx) => {
+          {thumbnails.map((thumbnail, idx) => {
             return (
               <li
                 // eslint-disable-next-line react/no-array-index-key
@@ -33,7 +35,7 @@ function Gallery({ images }: Props) {
                 className='thumbnails__list'
                 onMouseEnter={() => setImageIndex(idx)}
               >
-                <img src={image.thumbnail} alt='product thumbnail' />
+                <img src={urlFor(thumbnail).url()} alt='product thumbnail' />
               </li>
             );
           })}
@@ -48,7 +50,7 @@ function Gallery({ images }: Props) {
                 <li key={idx} className={setImageClassName(idx)}>
                   <img
                     className='product__image'
-                    src={image.image}
+                    src={urlFor(image).url()}
                     alt='product'
                     onMouseEnter={(e) => {
                       // update image size and turn-on magnifier
@@ -92,7 +94,7 @@ function Gallery({ images }: Props) {
           opacity: '1',
           border: '1px solid lightgray',
           backgroundColor: 'white',
-          backgroundImage: `url('${images[imageIndex].image}')`,
+          backgroundImage: `url('${urlFor(images[imageIndex]).url()}')`,
           backgroundRepeat: 'no-repeat',
 
           // calculate zoomed image size
