@@ -7,9 +7,8 @@ type Product = {
   delivery: string;
   stock: number;
   image: string;
-  overview: { [name: string]: string };
+  overview: { name: string; value: string }[];
   features?: string[];
-  'Technical Details'?: { [key: string]: string };
   images: { thumbnail: string; image: string }[];
   description?: string[];
 };
@@ -24,14 +23,16 @@ const PRODUCTS: Product[] = [
     delivery: 'free',
     stock: 100,
     image: 'https://m.media-amazon.com/images/I/61vj2BPDpuL._AC_SX425_.jpg',
-    overview: {
-      'Compatible phone models':
-        'Apple Iphone 8, Lg Optimus 4X, Samsung Galaxy S8',
-      Colour: 'Black',
-      Brand: 'Anker',
-      'Connector type': 'Micro USB',
-      Voltage: '5 Volts',
-    },
+    overview: [
+      {
+        name: 'Compatible phone models',
+        value: 'Apple Iphone 8, Lg Optimus 4X, Samsung Galaxy S8',
+      },
+      { name: 'Colour', value: 'Black' },
+      { name: 'Brand', value: 'Anker' },
+      { name: 'Connector type', value: 'Micro USB' },
+      { name: 'Voltage', value: '5 Volts' },
+    ],
     features: [
       'The Anker Advantage: Join the 30 million+ powered by our leading technology.',
       'Colossal Capacity: 26800mAh of power charges most phones over 6 times, tablets at least 2 times and any other USB device multiple times.',
@@ -39,15 +40,6 @@ const PRODUCTS: Product[] = [
       'Recharge 2X Faster: Dual Micro USB (20W) input offers recharge speeds up to twice as fast as standard portable chargers—a full recharge takes just over 6 hours while using both input ports (wall charger not included).',
       'What You Get: PowerCore 26800, 2X Micro USB Cable, Travel Pouch, Welcome Guide, our worry-free 18-month warranty and friendly customer service. USB-C cable and Lightning cable for iPhone / iPad sold separately.',
     ],
-    'Technical Details': {
-      Brand: 'Anker',
-      Manufacturer: 'Anker',
-      'Model Number': 'A1277',
-      'Model year': '2017',
-      'Part Number': 'AK-848061039238',
-      'Compatible Devices': 'Tablet, Smartphone',
-      'Web Browser Included': 'No',
-    },
 
     images: [
       {

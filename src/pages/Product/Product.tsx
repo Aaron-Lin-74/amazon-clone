@@ -1,17 +1,24 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useState, useEffect } from 'react';
 import { BsStarFill, BsStarHalf, BsStar } from 'react-icons/bs';
 import NumberFormat from 'react-number-format';
-import { useNavigate, useParams } from 'react-router-dom';
-import PRODUCTS from '../../constants/products';
+import { useParams } from 'react-router-dom';
+import sanityClient, { urlFor } from '../../client';
+import { ProductType } from '../../types';
+// import PRODUCTS from '../../constants/products';
 import Gallery from './Gallery/Gallery';
 import Panel from './Panel/Panel';
 import './Product.scss';
 
 function Product() {
-  const { id } = useParams();
-  const product = PRODUCTS.find((element) => element.id === id);
-  const navigate = useNavigate();
+  const [product, setProduct] = useState<ProductType | null>(null);
+  const { slug } = useParams();
 
+  useEffect(() => {
+    sanityClient
+      .fetch(`*[_type == "product" && slug.current == $slug]`, { slug })
+      .then((data) => setProduct(data[0]))
+      .catch(console.error);
+  }, [slug]);
   const ratingToStars = (rating: number): ReactNode => {
     const buffer: JSX.Element[] = [];
     for (let i = 0; i < Math.floor(rating); i += 1) {
@@ -45,15 +52,18 @@ function Product() {
           <div className='product__container'>
             <div className='container__rightColumn'>
               <Panel
-                id={product.id}
+                id={product._id}
                 title={product.title}
-                image={product.image}
+                image={urlFor(product.images[0]).url()}
                 price={product.price}
                 stock={product.stock}
               />
             </div>
             <div className='container__leftColumn'>
-              <Gallery images={product.images} />
+              <Gallery
+                images={product.images}
+                thumbnails={product.thumbnails}
+              />
             </div>
             <div className='container__centerColumn'>
               <h1 className='product__title'>{product && product.title}</h1>
@@ -109,13 +119,13 @@ function Product() {
                 <table>
                   <tbody>
                     {product &&
-                      Object.keys(product.overview).map((item, idx) => {
+                      product.overview.map((item, idx) => {
                         return (
                           // eslint-disable-next-line react/no-array-index-key
                           <React.Fragment key={idx}>
                             <tr>
-                              <td>{item}</td>
-                              <td>{product.overview[item]}</td>
+                              <td>{item.name}</td>
+                              <td>{item.value}</td>
                             </tr>
                           </React.Fragment>
                         );
@@ -143,23 +153,13 @@ function Product() {
                   className='description__image'
                   // eslint-disable-next-line react/no-array-index-key
                   key={idx}
-                  src={image}
+                  src={urlFor(image).url()}
                   alt=''
                 />
               );
             })}
           </div>
         </>
-      )}
-      {!product && (
-        <div className='product__noticeContainer'>
-          <div className='product__noticeBox'>
-            <h1 className='product__title'>Comming soon!</h1>
-            <button type='button' onClick={() => navigate(-1)}>
-              Go Back
-            </button>
-          </div>
-        </div>
       )}
     </div>
   );
