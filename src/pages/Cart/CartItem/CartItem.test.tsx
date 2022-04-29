@@ -1,8 +1,9 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import { screen, render } from '@testing-library/react';
+import { screen, render, fireEvent } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { BrowserRouter } from 'react-router-dom';
 import { StateProvider } from '../../../components/StateProvider';
-import reducer, { initialState } from '../../../store/reducer';
+import reducer from '../../../store/reducer';
 import CartItem from './CartItem';
 
 jest.mock('react-hot-toast', () => {
@@ -22,12 +23,16 @@ describe('CheckoutProduct component', () => {
     title: 'mock title',
     price: 100,
     quantity: 1,
-    stock: 10,
+    stock: 20,
     freeShipping: true,
+  };
+  const mockInitialState = {
+    cart: [{ ...mockProduct }],
+    user: null,
   };
   function renderCartItem() {
     return render(
-      <StateProvider initialState={initialState} reducer={reducer}>
+      <StateProvider initialState={mockInitialState} reducer={reducer}>
         <CartItem {...mockProduct} />
       </StateProvider>,
       { wrapper: BrowserRouter }
@@ -46,5 +51,53 @@ describe('CheckoutProduct component', () => {
       (screen.getByRole('option', { name: '1' }) as HTMLOptionElement).selected
     ).toBe(true);
     screen.getByText('$100.00');
+  });
+
+  test('should the quantity-change-select switch to input when select 10+', async () => {
+    renderCartItem();
+    userEvent.selectOptions(
+      screen.getByRole('combobox'),
+      screen.getByRole('option', { name: '10+' })
+    );
+    expect(
+      await screen.findByRole('spinbutton', {
+        name: /quantity/i,
+      })
+    ).toBeInTheDocument();
+  });
+  test('should quantity input switch back to select when user input is less than 10', async () => {
+    renderCartItem();
+    userEvent.selectOptions(
+      screen.getByRole('combobox'),
+      screen.getByRole('option', { name: '10+' })
+    );
+    expect(
+      await screen.findByRole('spinbutton', {
+        name: /quantity/i,
+      })
+    ).toBeInTheDocument();
+    fireEvent.change(screen.getByRole('spinbutton', { name: /quantity/i }), {
+      target: { value: '5' },
+    });
+    userEvent.click(screen.getByRole('button', { name: /update/i }));
+    expect(await screen.findByRole('combobox')).toBeInTheDocument();
+  });
+
+  test('quantity change input should only accept non-negative number', async () => {
+    renderCartItem();
+    userEvent.selectOptions(
+      screen.getByRole('combobox'),
+      screen.getByRole('option', { name: '10+' })
+    );
+    expect(
+      await screen.findByRole('spinbutton', {
+        name: /quantity/i,
+      })
+    ).toBeInTheDocument();
+    fireEvent.change(screen.getByRole('spinbutton', { name: /quantity/i }), {
+      target: { value: '-5' },
+    });
+    userEvent.click(screen.getByRole('button', { name: /update/i }));
+    expect(await screen.findByRole('combobox')).toHaveValue('1');
   });
 });

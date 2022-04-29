@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import NumberFormat from 'react-number-format';
 import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
@@ -16,6 +16,8 @@ interface Props {
 }
 function CartItem({ id, image, title, price, quantity, stock }: Props) {
   const [, dispatch] = useStateValue();
+  const [isMoreThanTen, setIsMoreThanTen] = useState<boolean>(false);
+  const [inputQty, setInputQty] = useState<number>(quantity);
   useEffect(() => {
     toast.remove();
   }, []);
@@ -48,17 +50,40 @@ function CartItem({ id, image, title, price, quantity, stock }: Props) {
     );
   };
 
-  const handleQuantityChange = (
-    e: React.ChangeEvent<HTMLSelectElement>
-  ): void => {
-    const selectedQty = parseInt(e.target.value, 10);
-    if (selectedQty === 0) {
+  const updateInputQty = (qty: number): void => {
+    if (Number.isNaN(qty)) return;
+    if (qty < 0) return;
+    if (qty > stock) {
+      toast(
+        'The quantity you want exceed our current stock limit, please reduce the quantity.',
+        { icon: '⚠️' }
+      );
+      return;
+    }
+    setInputQty(qty);
+  };
+
+  const handleQuantityChange = (qty: number): void => {
+    if (qty === 0) {
       removeFromBasket();
+      return;
+    }
+
+    // When the user clicked 10+, we use -1 for this option's value
+    if (qty === -1) {
+      setIsMoreThanTen(true);
+      return;
+    }
+
+    // When the user input a quantity less than 10, change back to select
+    if (qty < 10) {
+      setIsMoreThanTen(false);
     }
     dispatch({
       type: CartActions.CHANGE_QUANTITY,
-      payload: { id, quantity: selectedQty },
+      payload: { id, quantity: qty },
     });
+    setInputQty(qty);
   };
 
   return (
@@ -93,26 +118,55 @@ function CartItem({ id, image, title, price, quantity, stock }: Props) {
             </li>
           </ul>
           <div className='info__actionContainer'>
-            <select
-              className='quantity__dropdown'
-              name='quantity'
-              tabIndex={0}
-              title='quantity'
-              value={quantity}
-              onChange={handleQuantityChange}
-            >
-              <option value={0}>0 (Delete)</option>
-              <option value={1}>1</option>
-              <option value={2}>2</option>
-              <option value={3}>3</option>
-              <option value={4}>4</option>
-              <option value={5}>5</option>
-              <option value={6}>6</option>
-              <option value={7}>7</option>
-              <option value={8}>8</option>
-              <option value={9}>9</option>
-              <option value={10}>10</option>
-            </select>
+            <form aria-label='update quantity'>
+              {isMoreThanTen && (
+                <>
+                  <input
+                    className='quantity__input'
+                    title='quantity'
+                    aria-label='quantity'
+                    type='number'
+                    value={inputQty}
+                    onChange={(e) =>
+                      updateInputQty(parseInt(e.target.value, 10))
+                    }
+                    required
+                  />
+                  <button
+                    type='button'
+                    onClick={() => handleQuantityChange(inputQty)}
+                  >
+                    Update
+                  </button>
+                </>
+              )}
+              {!isMoreThanTen && (
+                <select
+                  className='quantity__dropdown'
+                  name='quantity'
+                  tabIndex={0}
+                  title='quantity'
+                  aria-label='update quantity'
+                  value={quantity}
+                  onChange={(e) =>
+                    handleQuantityChange(parseInt(e.target.value, 10))
+                  }
+                >
+                  <option value={0}>0 (Delete)</option>
+                  <option value={1}>1</option>
+                  <option value={2}>2</option>
+                  <option value={3}>3</option>
+                  <option value={4}>4</option>
+                  <option value={5}>5</option>
+                  <option value={6}>6</option>
+                  <option value={7}>7</option>
+                  <option value={8}>8</option>
+                  <option value={9}>9</option>
+                  {/* We use value -1 to represent 10+ */}
+                  <option value={-1}>10+</option>
+                </select>
+              )}
+            </form>
             <span className='cartItem__delimiter'>|</span>
             <span
               className='cartItem__link'

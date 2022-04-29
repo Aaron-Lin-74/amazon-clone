@@ -1,3 +1,5 @@
+@use '/src/styles/mixins';
+
 .cartItem {
   display: flex;
   margin-top: 12px;
@@ -49,32 +51,68 @@
       width: 100%;
       color: #007185;
       margin-top: 5px;
-      .quantity__dropdown {
-        border-radius: 7px;
-        background: #f0f2f2;
-        box-shadow: 0 2px 5px rgb(15 17 17 / 15%);
-        height: 29px;
-        width: 75px;
-        cursor: pointer;
-        text-align: center;
-        vertical-align: middle;
-        border-color: #d5d9d9;
-        border-style: solid;
-        border-width: 1px;
-
-        &:hover {
-          background: #cfcfcf;
+      form {
+        display: inline-block;
+        button {
+          @include mixins.yellowButton;
+          height: 22px;
+          font-size: 11px;
+          line-height: 20px;
+          padding: 0 6px 0 7px;
+          margin-left: 5px;
         }
-
-        &:focus {
-          border-color: #007185;
-          background-color: #edfdff;
-        }
-        option {
+        .quantity__input {
+          text-align: left;
+          vertical-align: middle;
+          border-color: #d5d9d9;
+          border-style: solid;
+          border-width: 1px;
+          font-size: 13px;
+          line-height: 19px;
           background-color: #fff;
+          height: 31px;
+          width: 77px;
+          padding: 3px 7px;
+          border: 1px solid #888c8c;
+          border-radius: 3px;
+          box-shadow: 0 1px 2px rgb(15 17 17 / 15%) inset;
+          outline: 0;
+          &:focus {
+            background-color: #f7feff;
+            border-color: #007185;
+            box-shadow: 0 0 0 3px #c8f3fa, 0 1px 2px rgb(15 17 17 / 15%) inset;
+          }
+        }
+        .quantity__dropdown {
+          border-radius: 7px;
+          background: #f0f2f2;
+          box-shadow: 0 2px 5px rgb(15 17 17 / 15%);
+          height: 29px;
+          width: 75px;
           cursor: pointer;
+          text-align: center;
+          vertical-align: middle;
+          border-color: #d5d9d9;
+          border-style: solid;
+          border-width: 1px;
+
+          &:hover {
+            background-color: #f7feff;
+            border-color: #007185;
+            box-shadow: 0 0 0 3px #c8f3fa, 0 1px 2px rgb(15 17 17 / 15%) inset;
+          }
+
+          &:focus {
+            border-color: #007185;
+            background-color: #edfdff;
+          }
+          option {
+            background-color: #fff;
+            cursor: pointer;
+          }
         }
       }
+
       .cartItem__delimiter {
         padding: 10px;
         color: #565959;
