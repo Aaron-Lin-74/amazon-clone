@@ -10,11 +10,11 @@ jest.mock('@sanity/image-url', () => {
     };
   };
 });
-jest.mock('../../../client', () => {
-  jest.requireActual('../../../client');
+jest.mock('../../../lib/client', () => {
+  jest.requireActual('../../../lib/client');
   return {
     urlFor: () => {
-      return { url: () => 'mock src' };
+      return 'mock src';
     },
   };
 });

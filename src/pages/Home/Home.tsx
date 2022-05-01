@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ProductCard from '../../components/ProductCard/ProductCard';
 import Hero from './Hero/Hero';
-import sanityClient, { urlFor } from '../../client';
+import sanityClient, { urlFor } from '../../lib/client';
 import { ProductType } from '../../types';
 import './Home.scss';
 
@@ -40,7 +40,7 @@ function Home() {
                     title={title}
                     price={price}
                     rating={rating}
-                    image={urlFor(images[0]).url()}
+                    image={urlFor(images[0])}
                     comments={comments}
                     stock={stock}
                     slug={slug.current}

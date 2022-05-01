@@ -10,7 +10,7 @@ const cofiguredSanityClient = sanityClient({
 
 export function urlFor(source) {
   const builder = imageUrlBuilder(cofiguredSanityClient);
-  return builder.image(source);
+  return builder.image(source).url();
 }
 
 export default cofiguredSanityClient;
