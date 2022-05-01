@@ -16,7 +16,7 @@ jest.mock('../../../lib/client', () => {
     urlFor: () => {
       return 'mock src';
     },
-    urlForThumbnai: () => {
+    urlForThumbnail: () => {
       return 'mock thumbnail src';
     },
   };
