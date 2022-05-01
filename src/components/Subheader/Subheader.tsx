@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FaBars } from 'react-icons/fa';
-// import NAVBARLINKS from '../../constants/navbarLinks';
 import './Subheader.scss';
 import Sidemenu from './Sidemenu/Sidemenu';
-import sanityClient from '../../lib/client';
+import sanityClient from '../../lib/sanityClient';
 import { NavbarLink } from '../../types';
 
 function Subheader() {

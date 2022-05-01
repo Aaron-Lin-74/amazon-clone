@@ -10,8 +10,8 @@ jest.mock('@sanity/image-url', () => {
     };
   };
 });
-jest.mock('../../../lib/client', () => {
-  jest.requireActual('../../../lib/client');
+jest.mock('../../../lib/sanityClient', () => {
+  jest.requireActual('../../../lib/sanityClient');
   return {
     urlFor: () => {
       return 'mock src';

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { VscChevronLeft, VscChevronRight } from 'react-icons/vsc';
 import { Link } from 'react-router-dom';
-import sanityClient from '../../../lib/client';
+import sanityClient from '../../../lib/sanityClient';
 import { HeroImagesType } from '../../../types';
 
 import './Hero.scss';

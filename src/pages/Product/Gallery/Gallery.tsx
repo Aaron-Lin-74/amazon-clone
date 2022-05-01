@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { urlFor, urlForThumbnail } from '../../../lib/client';
+import { urlFor, urlForThumbnail } from '../../../lib/sanityClient';
 import './Gallery.scss';
 
 type Props = {

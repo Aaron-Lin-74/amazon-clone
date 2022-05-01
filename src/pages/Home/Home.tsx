@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ProductCard from '../../components/ProductCard/ProductCard';
 import Hero from './Hero/Hero';
-import sanityClient, { urlFor } from '../../lib/client';
+import sanityClient, { urlFor } from '../../lib/sanityClient';
 import { ProductType } from '../../types';
 import './Home.scss';
 

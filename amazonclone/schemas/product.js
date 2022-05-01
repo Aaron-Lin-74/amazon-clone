@@ -1,5 +1,3 @@
-import { features } from 'process';
-
 export default {
   name: 'product',
   title: 'Products',
