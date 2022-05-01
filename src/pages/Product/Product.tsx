@@ -2,7 +2,7 @@ import React, { ReactNode, useState, useEffect } from 'react';
 import { BsStarFill, BsStarHalf, BsStar } from 'react-icons/bs';
 import NumberFormat from 'react-number-format';
 import { useParams } from 'react-router-dom';
-import sanityClient, { urlFor } from '../../client';
+import sanityClient, { urlFor } from '../../lib/client';
 import { ProductType } from '../../types';
 // import PRODUCTS from '../../constants/products';
 import Gallery from './Gallery/Gallery';
@@ -54,16 +54,13 @@ function Product() {
               <Panel
                 id={product._id}
                 title={product.title}
-                image={urlFor(product.images[0]).url()}
+                image={urlFor(product.images[0])}
                 price={product.price}
                 stock={product.stock}
               />
             </div>
             <div className='container__leftColumn'>
-              <Gallery
-                images={product.images}
-                thumbnails={product.thumbnails}
-              />
+              <Gallery images={product.images} />
             </div>
             <div className='container__centerColumn'>
               <h1 className='product__title'>{product && product.title}</h1>
@@ -153,7 +150,7 @@ function Product() {
                   className='description__image'
                   // eslint-disable-next-line react/no-array-index-key
                   key={idx}
-                  src={urlFor(image).url()}
+                  src={urlFor(image)}
                   alt=''
                 />
               );

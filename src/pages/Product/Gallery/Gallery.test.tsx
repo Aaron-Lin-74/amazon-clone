@@ -10,23 +10,22 @@ jest.mock('@sanity/image-url', () => {
     };
   };
 });
-jest.mock('../../../client', () => {
-  jest.requireActual('../../../client');
+jest.mock('../../../lib/client', () => {
+  jest.requireActual('../../../lib/client');
   return {
     urlFor: () => {
-      return { url: () => 'mock src' };
+      return 'mock src';
+    },
+    urlForThumbnail: () => {
+      return 'mock thumbnail src';
     },
   };
 });
 describe('Gallery component', () => {
   const mockImages = ['http://test.image1.jpg', 'http://test.image2.jpg'];
 
-  const mockThumbnails = [
-    'http://test.thumbnail1.jpg',
-    'http://test.thumbnail2.jpg',
-  ];
   test('should render the component', () => {
-    render(<Gallery images={mockImages} thumbnails={mockThumbnails} />, {
+    render(<Gallery images={mockImages} />, {
       wrapper: BrowserRouter,
     });
     expect(document.getElementsByClassName('gallery__list')[0]).toHaveClass(
@@ -37,7 +36,7 @@ describe('Gallery component', () => {
   });
 
   test('should change image list class when hover the related thumbnail', () => {
-    render(<Gallery images={mockImages} thumbnails={mockThumbnails} />, {
+    render(<Gallery images={mockImages} />, {
       wrapper: BrowserRouter,
     });
     expect(document.getElementsByClassName('gallery__list')[0]).toHaveClass(

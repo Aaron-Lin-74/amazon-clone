@@ -40,13 +40,6 @@ export default {
       option: { hotspot: true },
     },
     {
-      name: 'thumbnails',
-      title: 'Thumbnails',
-      type: 'array',
-      of: [{ type: 'image' }],
-      option: { hotspot: true },
-    },
-    {
       name: 'slug',
       title: 'Slug',
       type: 'slug',

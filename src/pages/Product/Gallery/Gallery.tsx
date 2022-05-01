@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import { urlFor } from '../../../client';
+import { urlFor, urlForThumbnail } from '../../../lib/client';
 import './Gallery.scss';
 
 type Props = {
   images: string[];
-  thumbnails: string[];
 };
-function Gallery({ images, thumbnails }: Props) {
+function Gallery({ images }: Props) {
   const magnifierHeight: number = 500;
   const magnifierWidth: number = 500;
   const zoomLevel: number = 2;
@@ -27,7 +26,7 @@ function Gallery({ images, thumbnails }: Props) {
     <div className='gallery'>
       <div className='gallery__thumbnails'>
         <ul>
-          {thumbnails.map((thumbnail, idx) => {
+          {images.map((image, idx) => {
             return (
               <li
                 // eslint-disable-next-line react/no-array-index-key
@@ -35,7 +34,7 @@ function Gallery({ images, thumbnails }: Props) {
                 className='thumbnails__list'
                 onMouseEnter={() => setImageIndex(idx)}
               >
-                <img src={urlFor(thumbnail).url()} alt='product thumbnail' />
+                <img src={urlForThumbnail(image)} alt='product thumbnail' />
               </li>
             );
           })}
@@ -50,7 +49,7 @@ function Gallery({ images, thumbnails }: Props) {
                 <li key={idx} className={setImageClassName(idx)}>
                   <img
                     className='product__image'
-                    src={urlFor(image).url()}
+                    src={urlFor(image)}
                     alt='product'
                     onMouseEnter={(e) => {
                       // update image size and turn-on magnifier
@@ -94,7 +93,7 @@ function Gallery({ images, thumbnails }: Props) {
           opacity: '1',
           border: '1px solid lightgray',
           backgroundColor: 'white',
-          backgroundImage: `url('${urlFor(images[imageIndex]).url()}')`,
+          backgroundImage: `url('${urlFor(images[imageIndex])}')`,
           backgroundRepeat: 'no-repeat',
 
           // calculate zoomed image size

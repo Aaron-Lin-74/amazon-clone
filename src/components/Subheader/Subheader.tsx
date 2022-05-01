@@ -4,7 +4,7 @@ import { FaBars } from 'react-icons/fa';
 // import NAVBARLINKS from '../../constants/navbarLinks';
 import './Subheader.scss';
 import Sidemenu from './Sidemenu/Sidemenu';
-import sanityClient from '../../client';
+import sanityClient from '../../lib/client';
 import { NavbarLink } from '../../types';
 
 function Subheader() {
