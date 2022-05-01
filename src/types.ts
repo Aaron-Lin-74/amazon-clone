@@ -35,7 +35,6 @@ export type ProductType = {
   overview: { name: string; value: string }[];
   features?: string[];
   images: string[];
-  thumbnails: string[];
   description?: string[];
   slug: { current: string };
 };

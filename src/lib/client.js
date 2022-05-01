@@ -13,4 +13,8 @@ export function urlFor(source) {
   return builder.image(source).url();
 }
 
+export function urlForThumbnail(source) {
+  const builder = imageUrlBuilder(cofiguredSanityClient);
+  return builder.image(source).height(38).url();
+}
 export default cofiguredSanityClient;

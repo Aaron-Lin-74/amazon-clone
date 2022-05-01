@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import { urlFor } from '../../../lib/client';
+import { urlFor, urlForThumbnail } from '../../../lib/client';
 import './Gallery.scss';
 
 type Props = {
   images: string[];
-  thumbnails: string[];
 };
-function Gallery({ images, thumbnails }: Props) {
+function Gallery({ images }: Props) {
   const magnifierHeight: number = 500;
   const magnifierWidth: number = 500;
   const zoomLevel: number = 2;
@@ -27,7 +26,7 @@ function Gallery({ images, thumbnails }: Props) {
     <div className='gallery'>
       <div className='gallery__thumbnails'>
         <ul>
-          {thumbnails.map((thumbnail, idx) => {
+          {images.map((image, idx) => {
             return (
               <li
                 // eslint-disable-next-line react/no-array-index-key
@@ -35,7 +34,7 @@ function Gallery({ images, thumbnails }: Props) {
                 className='thumbnails__list'
                 onMouseEnter={() => setImageIndex(idx)}
               >
-                <img src={urlFor(thumbnail)} alt='product thumbnail' />
+                <img src={urlForThumbnail(image)} alt='product thumbnail' />
               </li>
             );
           })}

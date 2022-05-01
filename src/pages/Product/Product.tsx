@@ -60,10 +60,7 @@ function Product() {
               />
             </div>
             <div className='container__leftColumn'>
-              <Gallery
-                images={product.images}
-                thumbnails={product.thumbnails}
-              />
+              <Gallery images={product.images} />
             </div>
             <div className='container__centerColumn'>
               <h1 className='product__title'>{product && product.title}</h1>
