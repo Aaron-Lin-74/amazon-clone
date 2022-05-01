@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { AiOutlineClose } from 'react-icons/ai';
 import { CgProfile } from 'react-icons/cg';
-import sanityClient from '../../../lib/client';
+import sanityClient from '../../../lib/sanityClient';
 import { LinksCollection } from '../../../types';
 import { useStateValue } from '../../StateProvider';
 import './Sidemenu.scss';

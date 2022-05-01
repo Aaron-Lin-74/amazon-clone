@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Footer.scss';
 import { Link } from 'react-router-dom';
-import sanityClient from '../../lib/client';
+import sanityClient from '../../lib/sanityClient';
 import { LinksCollection } from '../../types';
 
 function Footer() {
