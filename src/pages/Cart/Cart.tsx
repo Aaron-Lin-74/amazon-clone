@@ -30,6 +30,7 @@ function Checkout() {
                 price={item.price}
                 quantity={item.quantity}
                 stock={item.stock}
+                slug={item.slug}
               />
             );
           })}

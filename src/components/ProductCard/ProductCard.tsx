@@ -57,6 +57,7 @@ function ProductCard({
             price_id,
             quantity: 1,
             stock,
+            slug,
           },
         },
       });
