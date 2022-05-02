@@ -16,7 +16,9 @@ interface Props {
 }
 function CartItem({ id, image, title, price, quantity, stock }: Props) {
   const [, dispatch] = useStateValue();
-  const [isMoreThanTen, setIsMoreThanTen] = useState<boolean>(false);
+  const [isMoreThanTen, setIsMoreThanTen] = useState<boolean>(() => {
+    return quantity > 10;
+  });
   const [inputQty, setInputQty] = useState<number>(quantity);
   useEffect(() => {
     toast.remove();

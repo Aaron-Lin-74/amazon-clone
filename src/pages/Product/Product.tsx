@@ -56,6 +56,7 @@ function Product() {
                 title={product.title}
                 image={urlFor(product.images[0])}
                 price={product.price}
+                price_id={product.price_id}
                 stock={product.stock}
               />
             </div>

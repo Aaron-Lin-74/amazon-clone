@@ -22,6 +22,7 @@ describe('CheckoutProduct component', () => {
     image: 'http://mockimge',
     title: 'mock title',
     price: 100,
+    price_id: 'mock price id',
     quantity: 1,
     stock: 20,
     freeShipping: true,

@@ -12,9 +12,10 @@ type Props = {
   title: string;
   image: string;
   price: number;
+  price_id: string;
   stock: number;
 };
-function Panel({ id, title, image, price, stock }: Props) {
+function Panel({ id, title, image, price, price_id, stock }: Props) {
   const [quantity, setQuantity] = useState<number>(1);
   const [{ cart }, dispatch] = useStateValue();
   const navigate = useNavigate();
@@ -43,6 +44,7 @@ function Panel({ id, title, image, price, stock }: Props) {
             title,
             image,
             price,
+            price_id,
             quantity,
             stock,
           },
