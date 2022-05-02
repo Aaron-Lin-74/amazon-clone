@@ -28,6 +28,7 @@ export type ProductType = {
   _id: string;
   title: string;
   price: number;
+  price_id: string;
   rating: number;
   comments: number;
   delivery: string;

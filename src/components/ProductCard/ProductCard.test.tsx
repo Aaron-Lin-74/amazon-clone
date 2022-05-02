@@ -21,6 +21,7 @@ describe('Product component', () => {
     id: '111',
     title: 'mock title',
     price: 100.0,
+    price_id: 'mock price id',
     rating: 2.5,
     image: 'http://mockimage',
     comments: 200,

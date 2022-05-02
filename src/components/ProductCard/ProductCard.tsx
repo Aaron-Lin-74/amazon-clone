@@ -12,6 +12,7 @@ interface Props {
   title: string;
   image: string;
   price: number;
+  price_id: string;
   rating: number;
   stock: number;
   comments: number;
@@ -23,6 +24,7 @@ function ProductCard({
   title,
   image,
   price,
+  price_id,
   rating,
   stock,
   comments,
@@ -52,6 +54,7 @@ function ProductCard({
             title,
             image,
             price,
+            price_id,
             quantity: 1,
             stock,
           },

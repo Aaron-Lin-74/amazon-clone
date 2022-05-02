@@ -10,7 +10,7 @@ function Home() {
   useEffect(() => {
     sanityClient
       .fetch(
-        `*[_type == "product"] {_id, title, slug, price, rating, images, comments, stock}`
+        `*[_type == "product"] {_id, title, slug, price, price_id, rating, images, comments, stock}`
       )
       .then((data) => setAllProducts(data))
       .catch(console.error);
@@ -27,6 +27,7 @@ function Home() {
                 _id,
                 title,
                 price,
+                price_id,
                 rating,
                 images,
                 stock,
@@ -39,6 +40,7 @@ function Home() {
                     key={_id}
                     title={title}
                     price={price}
+                    price_id={price_id}
                     rating={rating}
                     image={urlFor(images[0])}
                     comments={comments}
