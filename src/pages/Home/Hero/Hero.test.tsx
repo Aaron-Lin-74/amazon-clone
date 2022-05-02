@@ -3,7 +3,7 @@ import { render, screen, act } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import Hero from './Hero';
 import { StateProvider } from '../../../components/StateProvider';
-import reducer, { initialState } from '../../../store/reducer';
+import reducer, { initializer, initialState } from '../../../store/reducer';
 
 jest.mock('@sanity/client', () => {
   return function sanityClient() {
@@ -34,7 +34,11 @@ jest.mock('react-hot-toast', () => {
 describe('Home component', () => {
   function renderHero() {
     return render(
-      <StateProvider initialState={initialState} reducer={reducer}>
+      <StateProvider
+        initialState={initialState}
+        reducer={reducer}
+        initializer={initializer}
+      >
         <Hero />
       </StateProvider>,
       { wrapper: BrowserRouter }

@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
-import reducer, { initialState } from '../../store/reducer';
+import reducer, { initializer, initialState } from '../../store/reducer';
 import { StateProvider } from '../StateProvider';
 import ProductCard from './ProductCard';
 
@@ -29,7 +29,11 @@ describe('Product component', () => {
   };
   function renderProductCard() {
     return render(
-      <StateProvider initialState={initialState} reducer={reducer}>
+      <StateProvider
+        initialState={initialState}
+        reducer={reducer}
+        initializer={initializer}
+      >
         <ProductCard {...mockProps} />
       </StateProvider>,
       { wrapper: BrowserRouter }

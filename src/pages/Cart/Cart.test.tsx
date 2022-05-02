@@ -1,12 +1,16 @@
 import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import { StateProvider } from '../../components/StateProvider';
-import reducer, { initialState } from '../../store/reducer';
+import reducer, { initializer, initialState } from '../../store/reducer';
 import Cart from './Cart';
 
 function renderCart() {
   return render(
-    <StateProvider initialState={initialState} reducer={reducer}>
+    <StateProvider
+      initialState={initialState}
+      reducer={reducer}
+      initializer={initializer}
+    >
       <Cart />
     </StateProvider>,
     { wrapper: BrowserRouter }
