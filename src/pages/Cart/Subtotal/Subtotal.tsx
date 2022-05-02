@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import NumberFormat from 'react-number-format';
 import { AiFillCheckCircle } from 'react-icons/ai';
 import toast from 'react-hot-toast';
@@ -45,17 +45,14 @@ function Subtotal() {
       } else {
         setStripeError(String(err));
       }
+      toast.error(
+        stripeError || 'Oops! Something goes wrong, please try later again'
+      );
     } finally {
       setLoading(false);
     }
   };
 
-  // Show the error notification
-  useEffect(() => {
-    toast.error(
-      stripeError || 'Oops! Something goes wrong, please try later again'
-    );
-  }, [stripeError]);
   return (
     <div className='subtotal'>
       <div className='subtotal__alert'>
