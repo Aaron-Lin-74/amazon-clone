@@ -3,7 +3,7 @@ import { screen, render, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { BrowserRouter } from 'react-router-dom';
 import { StateProvider } from '../../../components/StateProvider';
-import reducer from '../../../store/reducer';
+import reducer, { initializer } from '../../../store/reducer';
 import CartItem from './CartItem';
 
 jest.mock('react-hot-toast', () => {
@@ -32,7 +32,11 @@ describe('CheckoutProduct component', () => {
   };
   function renderCartItem() {
     return render(
-      <StateProvider initialState={mockInitialState} reducer={reducer}>
+      <StateProvider
+        initialState={mockInitialState}
+        reducer={reducer}
+        initializer={initializer}
+      >
         <CartItem {...mockProduct} />
       </StateProvider>,
       { wrapper: BrowserRouter }

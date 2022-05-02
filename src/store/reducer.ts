@@ -13,6 +13,17 @@ export const initialState: InitialState = {
   user: null,
 };
 
+// Retrieve cart data from local storage if exits.
+export const initializer = (initialValue = initialState): InitialState => {
+  const cartFromStorage: string | null =
+    window.localStorage.getItem('localCart');
+  const cart = cartFromStorage ? JSON.parse(cartFromStorage) : [];
+  return {
+    ...initialValue,
+    cart,
+  };
+};
+
 // Selector
 export const getCartTotal = (cart: Cart): number =>
   cart?.reduce(
