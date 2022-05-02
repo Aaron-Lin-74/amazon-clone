@@ -13,8 +13,9 @@ interface Props {
   price: number;
   quantity: number;
   stock: number;
+  slug: string;
 }
-function CartItem({ id, image, title, price, quantity, stock }: Props) {
+function CartItem({ id, image, title, price, quantity, stock, slug }: Props) {
   const [, dispatch] = useStateValue();
   const [isMoreThanTen, setIsMoreThanTen] = useState<boolean>(() => {
     return quantity > 10;
@@ -91,14 +92,14 @@ function CartItem({ id, image, title, price, quantity, stock }: Props) {
   return (
     <>
       <div className='cartItem'>
-        <Link to={`/product/${id}`}>
+        <Link to={`/product/${slug}`}>
           <img className='cartItem__image' src={image} alt={title} />
         </Link>
 
         <div className='cartItem__info'>
           <ul className='info__list'>
             <li>
-              <Link to={`/product/${id}`}>
+              <Link to={`/product/${slug}`}>
                 <p className='info__title'>{title}</p>
               </Link>
             </li>

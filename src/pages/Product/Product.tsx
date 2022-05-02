@@ -58,6 +58,7 @@ function Product() {
                 price={product.price}
                 price_id={product.price_id}
                 stock={product.stock}
+                slug={product.slug.current}
               />
             </div>
             <div className='container__leftColumn'>

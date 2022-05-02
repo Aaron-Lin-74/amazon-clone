@@ -25,7 +25,7 @@ describe('CheckoutProduct component', () => {
     price_id: 'mock price id',
     quantity: 1,
     stock: 20,
-    freeShipping: true,
+    slug: 'mock slug',
   };
   const mockInitialState = {
     cart: [{ ...mockProduct }],

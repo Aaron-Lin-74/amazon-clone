@@ -14,8 +14,9 @@ type Props = {
   price: number;
   price_id: string;
   stock: number;
+  slug: string;
 };
-function Panel({ id, title, image, price, price_id, stock }: Props) {
+function Panel({ id, title, image, price, price_id, stock, slug }: Props) {
   const [quantity, setQuantity] = useState<number>(1);
   const [{ cart }, dispatch] = useStateValue();
   const navigate = useNavigate();
@@ -47,6 +48,7 @@ function Panel({ id, title, image, price, price_id, stock }: Props) {
             price_id,
             quantity,
             stock,
+            slug,
           },
         },
       });

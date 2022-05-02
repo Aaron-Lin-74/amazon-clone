@@ -8,6 +8,7 @@ export type CartItem = {
   image: string;
   quantity: number;
   stock: number;
+  slug: string;
 };
 
 export type Cart = CartItem[];
