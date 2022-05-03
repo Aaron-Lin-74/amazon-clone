@@ -1,0 +1,63 @@
+@use '/src/styles/mixins';
+.error {
+  &__logo {
+    position: relative;
+    width: 100px;
+    margin-top: 20px;
+    margin-bottom: 22px;
+    margin-right: auto;
+    margin-left: auto;
+    object-fit: contain;
+    &::after {
+      content: '.com.au';
+      position: absolute;
+      top: -5px;
+      padding-left: 2px;
+      color: #111;
+      font-size: 30px;
+      font-weight: 600;
+    }
+    img {
+      width: 100%;
+      object-fit: contain;
+    }
+  }
+  &__info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .error__icon {
+      color: #e47911;
+      font-size: 35px;
+      padding-right: 20px;
+      font-weight: bold;
+    }
+    .info__container {
+      h1 {
+        font-family: verdana, arial, helvetica, sans-serif;
+        color: #e47911;
+        font-size: medium;
+      }
+      p {
+        padding-top: 20px;
+      }
+      strong {
+        padding-left: 5px;
+        font-size: 20px;
+        color: red;
+      }
+      a {
+        color: #004b91;
+        &:active {
+          color: #ff9933;
+        }
+      }
+      .error__btn {
+        @include mixins.defaultButton;
+        &--light {
+          @include mixins.paleButton;
+        }
+      }
+    }
+  }
+}
