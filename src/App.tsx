@@ -14,6 +14,7 @@ import { useStateValue } from './components/StateProvider';
 import Demo from './pages/Demo/Demo';
 import Product from './pages/Product/Product';
 import Footer from './components/Footer/Footer';
+import NotFound from './pages/NotFound/NotFound';
 
 function App() {
   const [, dispatch] = useStateValue();
@@ -30,6 +31,7 @@ function App() {
   return (
     <div className='App'>
       <Routes>
+        <Route path='*' element={<NotFound />} />
         <Route
           path='/'
           element={
