@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { User } from 'firebase/auth';
+import { ErrorBoundary } from 'react-error-boundary';
 import { Toaster } from 'react-hot-toast';
 import Header from './components/Header/Header';
 import Subheader from './components/Subheader/Subheader';
@@ -11,6 +12,7 @@ import SignIn from './pages/SignIn/SignIn';
 import { auth, onAuthStateChanged } from './firebase';
 import { UserActions } from './store/types';
 import { useStateValue } from './components/StateProvider';
+import ErrorFallback from './pages/ErrorFallback/ErrorFallback';
 import Demo from './pages/Demo/Demo';
 import Product from './pages/Product/Product';
 import Footer from './components/Footer/Footer';
@@ -30,59 +32,61 @@ function App() {
   }, [dispatch]);
   return (
     <div className='App'>
-      <Routes>
-        <Route path='*' element={<NotFound />} />
-        <Route
-          path='/'
-          element={
-            <>
-              <Header />
-              <Subheader />
-              <Home />
-              <Footer />
-            </>
-          }
+      <ErrorBoundary FallbackComponent={ErrorFallback}>
+        <Routes>
+          <Route path='*' element={<NotFound />} />
+          <Route
+            path='/'
+            element={
+              <>
+                <Header />
+                <Subheader />
+                <Home />
+                <Footer />
+              </>
+            }
+          />
+          <Route
+            path='/checkout'
+            element={
+              <>
+                <Header />
+                <Subheader />
+                <Cart />
+                <Footer />
+              </>
+            }
+          />
+          <Route
+            path='/product/:slug'
+            element={
+              <>
+                <Header />
+                <Subheader />
+                <Product />
+                <Footer />
+              </>
+            }
+          />
+          <Route path='/signin' element={<SignIn />} />
+          <Route
+            path='/demo'
+            element={
+              <>
+                <Header />
+                <Subheader />
+                <Demo />
+                <Footer />
+              </>
+            }
+          />
+        </Routes>
+        <Toaster
+          containerStyle={{
+            top: 100,
+          }}
         />
-        <Route
-          path='/checkout'
-          element={
-            <>
-              <Header />
-              <Subheader />
-              <Cart />
-              <Footer />
-            </>
-          }
-        />
-        <Route
-          path='/product/:slug'
-          element={
-            <>
-              <Header />
-              <Subheader />
-              <Product />
-              <Footer />
-            </>
-          }
-        />
-        <Route path='/signin' element={<SignIn />} />
-        <Route
-          path='/demo'
-          element={
-            <>
-              <Header />
-              <Subheader />
-              <Demo />
-              <Footer />
-            </>
-          }
-        />
-      </Routes>
-      <Toaster
-        containerStyle={{
-          top: 100,
-        }}
-      />
+      </ErrorBoundary>
     </div>
   );
 }
