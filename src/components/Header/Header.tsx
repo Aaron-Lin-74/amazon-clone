@@ -21,7 +21,7 @@ function Header() {
       <div className='header__logo'>
         <Link to='/' className='logo__link'>
           <img
-            src='http://pngimg.com/uploads/amazon/amazon_PNG11.png'
+            src={`${process.env.PUBLIC_URL}/amazon_logo.png`}
             alt='logo'
             className='logo__img'
           />
