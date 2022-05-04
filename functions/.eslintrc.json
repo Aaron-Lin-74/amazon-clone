@@ -1,0 +1,25 @@
+{
+  "root": true,
+  "env": {
+    "commonjs": true,
+    "es2021": true,
+    "node": true
+  },
+  "extends": ["google", "plugin:prettier/recommended"],
+  "parserOptions": {
+    "ecmaVersion": "latest"
+  },
+  "plugins": ["prettier"],
+  "rules": {
+    "prettier/prettier": [
+      "warn",
+      {
+        "endOfLine": "auto",
+        "arrowParens": "always",
+        "singleQuote": true,
+        "jsxSingleQuote": true,
+        "printWidth": 80
+      }
+    ]
+  }
+}
