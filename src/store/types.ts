@@ -23,6 +23,7 @@ export enum CartActions {
   ADD_AGAIN = 'ADD_AGAIN',
   CHANGE_QUANTITY = 'CHANGE_QUANTITY',
   DELETE = 'DELETE',
+  EMPTY_CART = 'EMPTY_CART',
 }
 
 export enum UserActions {
@@ -40,6 +41,7 @@ export type CartAction =
       type: CartActions.CHANGE_QUANTITY;
       payload: { id: string; quantity: number };
     }
+  | { type: CartActions.EMPTY_CART }
   | { type: CartActions.DELETE; payload: { id: string } };
 
 export type UserAction =
