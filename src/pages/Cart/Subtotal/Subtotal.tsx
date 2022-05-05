@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import NumberFormat from 'react-number-format';
 import { AiFillCheckCircle } from 'react-icons/ai';
 import toast from 'react-hot-toast';
-import { RedirectToCheckoutOptions } from '@stripe/stripe-js';
 import { useNavigate } from 'react-router-dom';
 import getStripe from '../../../lib/stripePayment';
 import { getCartTotal, getCartItemNumber } from '../../../store/reducer';
 import { useStateValue } from '../../../components/StateProvider';
+import axios from '../../../lib/axios';
 import './Subtotal.scss';
 
 function Subtotal() {
@@ -18,17 +18,8 @@ function Subtotal() {
   const navigate = useNavigate();
 
   const items = cart.map((item) => {
-    return { price: item.price_id, quantity: item.quantity };
+    return { price_id: item.price_id, quantity: item.quantity };
   });
-  const checkoutOptions: RedirectToCheckoutOptions = {
-    customerEmail: user ? user.email! : undefined,
-    lineItems: items,
-    mode: 'payment',
-    successUrl: `${window.location.origin}/success`,
-    cancelUrl: `${window.location.origin}/checkout`,
-    shippingAddressCollection: { allowedCountries: ['AU'] },
-    clientReferenceId: 'id',
-  };
   const redirectToCheckout = async () => {
     // Check if the client has signed in, if not redirect to sign in page
     if (!user) {
@@ -38,7 +29,15 @@ function Subtotal() {
     setLoading(true);
     try {
       const stripe = await getStripe();
-      await stripe!.redirectToCheckout(checkoutOptions);
+      const response = await axios({
+        method: 'post',
+        url: '/create-checkout-session',
+        data: {
+          email: user.email,
+          items,
+        },
+      });
+      await stripe!.redirectToCheckout({ sessionId: response.data.id });
     } catch (err) {
       if (err instanceof Error) {
         setStripeError(err.message);
