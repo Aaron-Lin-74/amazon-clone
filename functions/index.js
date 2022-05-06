@@ -24,12 +24,7 @@ app.post('/create-checkout-session', async (req, res) => {
         { shipping_rate: process.env.FREE_SHIPPING_ID },
         { shipping_rate: process.env.FAST_SHIPPING_ID },
       ],
-      line_items: req.body.items.map((item) => {
-        return {
-          price: item.price_id,
-          quantity: item.quantity,
-        };
-      }),
+      line_items: req.body.items,
       success_url: `${req.headers.origin}/success/{CHECKOUT_SESSION_ID}`,
       cancel_url: `${req.headers.origin}/checkout`,
       allow_promotion_codes: true,

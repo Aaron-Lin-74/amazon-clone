@@ -18,7 +18,7 @@ function Subtotal() {
   const navigate = useNavigate();
 
   const items = cart.map((item) => {
-    return { price_id: item.price_id, quantity: item.quantity };
+    return { price: item.price_id, quantity: item.quantity };
   });
   const redirectToCheckout = async () => {
     // Check if the client has signed in, if not redirect to sign in page
