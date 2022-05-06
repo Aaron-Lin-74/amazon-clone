@@ -85,7 +85,7 @@ app.post('/webhook', express.raw({ type: 'application/json' }), (req, res) => {
     const signature = req.headers['stripe-signature'];
     try {
       event = stripe.webhooks.constructEvent(
-        req.body,
+        req.rawBody,
         signature,
         endpointSecret
       );
