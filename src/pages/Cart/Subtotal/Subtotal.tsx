@@ -20,6 +20,10 @@ function Subtotal() {
   const items = cart.map((item) => {
     return { price: item.price_id, quantity: item.quantity };
   });
+
+  const cartItems = cart.map((item) => {
+    return { id: item.id, price: item.price_id, quantity: item.quantity };
+  });
   const redirectToCheckout = async () => {
     // Check if the client has signed in, if not redirect to sign in page
     if (!user) {
@@ -35,6 +39,8 @@ function Subtotal() {
         data: {
           email: user.email,
           items,
+          cartItems,
+          userId: user.uid,
         },
       });
       await stripe!.redirectToCheckout({ sessionId: response.data.id });
