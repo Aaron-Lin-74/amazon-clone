@@ -18,7 +18,7 @@ import Product from './pages/Product/Product';
 import Footer from './components/Footer/Footer';
 import NotFound from './pages/NotFound/NotFound';
 import Success from './pages/Success/Success';
-import Order from './pages/Order/Order';
+import Orders from './pages/Orders/Orders';
 
 function App() {
   const [, dispatch] = useStateValue();
@@ -94,12 +94,12 @@ function App() {
             }
           />
           <Route
-            path='/order'
+            path='/order-history'
             element={
               <>
                 <Header />
                 <Subheader />
-                <Order />
+                <Orders />
                 <Footer />
               </>
             }
