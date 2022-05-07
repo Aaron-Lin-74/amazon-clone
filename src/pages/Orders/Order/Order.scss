@@ -1,0 +1,39 @@
+.order {
+  margin: 20px 0;
+
+  &__header {
+    width: 100%;
+    border: 1px #d5d9d9 solid;
+    border-radius: 8px 8px 0 0;
+    background-color: #f0f2f2 !important;
+    padding: 14px 18px;
+    .header__left {
+      padding-right: 290px;
+      .header__col1 {
+        width: 23.448%;
+        float: left;
+      }
+      .header__col2 {
+        width: 14.948%;
+        float: left;
+      }
+      .header__col3 {
+        width: 57.448%;
+        float: left;
+      }
+    }
+    .header__right {
+      width: 290px;
+      margin-right: -290px;
+      float: left;
+      span {
+        padding-left: 15px;
+      }
+    }
+  }
+}
+.clearfix::after {
+  content: '';
+  clear: both;
+  display: table;
+}
