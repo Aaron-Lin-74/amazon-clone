@@ -35,7 +35,6 @@ app.post('/create-checkout-session', async (req, res) => {
       metadata: {
         cartItems: JSON.stringify(req.body.cartItems),
         userId: req.body.userId,
-        createdAt: new Date().toString(),
       },
       line_items: req.body.items,
       success_url: `${req.headers.origin}/success/{CHECKOUT_SESSION_ID}`,
@@ -46,6 +45,33 @@ app.post('/create-checkout-session', async (req, res) => {
     res.status(200).json(session);
   } catch (err) {
     res.status(err.statusCode || 500).json(err.message);
+  }
+});
+
+// retrieve a user's order records
+app.get('/orders', async (req, res) => {
+  const userId = req.query.userId;
+  try {
+    const snapshot = await admin
+      .firestore()
+      .collection('users')
+      .doc(userId)
+      .collection('orders')
+      .orderBy('createdAt', 'desc')
+      .get();
+    res.status(200).send(
+      snapshot.docs.map((doc) => {
+        return {
+          id: doc.id,
+          data: {
+            ...doc.data(),
+            createdAt: doc.data().createdAt.toDate().toDateString(),
+          },
+        };
+      })
+    );
+  } catch (err) {
+    res.status(400).send(err);
   }
 });
 
@@ -64,6 +90,7 @@ app.get('/order/success', async (req, res) => {
 const fulfillOrder = async (session) => {
   // Write order info to the firestore
   const userId = session.metadata.userId;
+  const customer = await stripe.customers.retrieve(session.customer);
   await admin
     .firestore()
     .collection(`users`)
@@ -73,7 +100,8 @@ const fulfillOrder = async (session) => {
     .set({
       items: JSON.parse(session.metadata.cartItems),
       amount: session.amount_total / 100,
-      createdAt: session.metadata.createdAt,
+      createdAt: admin.firestore.Timestamp.now(),
+      customer,
     });
 };
 
