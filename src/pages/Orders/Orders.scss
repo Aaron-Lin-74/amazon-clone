@@ -1,0 +1,17 @@
+.orders {
+  margin: 0 auto;
+  width: 920px;
+  position: relative;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  &__row {
+    width: 100%;
+    .orders__heading {
+      margin: 22px 2%;
+      float: left;
+      min-height: 1px;
+      overflow: visible;
+    }
+  }
+}

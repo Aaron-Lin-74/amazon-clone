@@ -68,6 +68,11 @@ const reducer = (state: InitialState, action: CartAction | UserAction) => {
           (item: CartItem) => item.id !== action.payload.id
         ),
       };
+    case CartActions.EMPTY_CART:
+      return {
+        ...state,
+        cart: [],
+      };
     case UserActions.SIGN_IN:
       return {
         ...state,

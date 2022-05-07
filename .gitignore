@@ -7,9 +7,14 @@ node_modules
 
 # testing
 /coverage
+firestore-debug.log
+ui-debug.log
+request.rest
 
 # production
 /build
+dist
+.firebase
 
 # misc
 .DS_Store

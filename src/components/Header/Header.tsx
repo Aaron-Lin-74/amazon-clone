@@ -104,10 +104,12 @@ function Header() {
             <span>{user ? 'Sign Out' : 'Account & Lists'}</span>
           </div>
         </Link>
-        <div className='header__option' role='button' tabIndex={0}>
-          <span>Returns</span>
-          <span>& Orders</span>
-        </div>
+        <Link to={user ? '/order-history' : '/signin'}>
+          <div className='header__option' role='button' tabIndex={0}>
+            <span>Returns</span>
+            <span>& Orders</span>
+          </div>
+        </Link>
         <Link to='/checkout'>
           <div className='header__cart' role='button' tabIndex={0}>
             <BsCart3 className='header__cartLogo' />

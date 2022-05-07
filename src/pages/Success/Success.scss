@@ -1,0 +1,60 @@
+@use 'src/styles/mixins';
+
+.success {
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 1),
+    rgba(255, 255, 255, 0.7)
+  );
+  height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &__container {
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    border: 1px solid lightgray;
+    padding: 20px 26px;
+    margin-bottom: 22px;
+    h1 {
+      padding: 20px;
+    }
+    h2,
+    h3 {
+      padding: 15px 0;
+      align-self: flex-start;
+    }
+    p {
+      padding: 10px 0;
+      margin-bottom: 20px;
+    }
+    .successBtn__container {
+      display: flex;
+      flex-direction: column;
+      width: 50%;
+      .success__btn {
+        @include mixins.defaultButton;
+        &--light {
+          @include mixins.paleButton;
+        }
+      }
+    }
+  }
+}
+.loading {
+  width: 100%;
+  height: calc(100% - 100px);
+  &__text {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 40%;
+  }
+  &__img {
+    width: 100%;
+  }
+}
