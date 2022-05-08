@@ -60,7 +60,7 @@ function Success() {
           E-commerce web application.
         </p>
         <div className='successBtn__container'>
-          <Link to='/order'>
+          <Link to='/order-history'>
             <button type='button' className='success__btn'>
               View order
             </button>

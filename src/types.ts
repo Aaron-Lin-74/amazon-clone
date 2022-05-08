@@ -39,3 +39,19 @@ export type ProductType = {
   description?: string[];
   slug: { current: string };
 };
+
+export type OrderDataType = {
+  amount: number;
+  items: {
+    quantity: number;
+    id: string;
+    price: string;
+  }[];
+  createdAt: string;
+  customer: { name: string };
+};
+
+export type OrderType = {
+  id: string;
+  data: OrderDataType;
+};
