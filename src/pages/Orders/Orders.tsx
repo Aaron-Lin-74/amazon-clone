@@ -1,28 +1,13 @@
 import React, { useEffect, useState } from 'react';
-// import { useNavigate } from 'react-router-dom';
 import { useStateValue } from '../../components/StateProvider';
 import axios from '../../lib/axios';
+import { OrderType } from '../../types';
 import Order from './Order/Order';
 import './Orders.scss';
 
-export type OrderType = {
-  id: string;
-  data: {
-    amount: number;
-    items: {
-      quantity: number;
-      id: string;
-      price: string;
-    }[];
-    createdAt: string;
-    customer: string;
-  };
-};
 function Orders() {
   const [orders, setOrders] = useState<OrderType[]>([]);
   const [{ user }] = useStateValue();
-  // const navigate = useNavigate();
-
   useEffect(() => {
     const fetchOrders = async () => {
       if (user) {

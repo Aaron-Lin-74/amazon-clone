@@ -1,19 +1,10 @@
 import React from 'react';
 import NumberFormat from 'react-number-format';
+import { OrderDataType } from '../../../types';
 import OrderItem from '../OrderItem/OrderItem';
 import './Order.scss';
 
-type OrderType = {
-  amount: number;
-  items: {
-    quantity: number;
-    id: string;
-    price: string;
-  }[];
-  createdAt: string;
-  customer: string;
-};
-function Order({ orderData }: { orderData: OrderType }) {
+function Order({ orderData }: { orderData: OrderDataType }) {
   return (
     <div className='order'>
       <div className='order__header clearfix'>
@@ -40,7 +31,7 @@ function Order({ orderData }: { orderData: OrderType }) {
           <div className='header__col3'>
             <span>DELIVER TO</span>
             <br />
-            <span>{orderData.customer}</span>
+            <span>{orderData.customer.name}</span>
           </div>
         </div>
         <div className='header__right'>
