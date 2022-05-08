@@ -26,7 +26,7 @@ function Orders() {
           <h1>Your Orders</h1>
         </div>
       </div>
-
+      {orders && <h2>You have not placed any orders in past 3 months.</h2>}
       {orders.map((order) => (
         <Order key={order.id} orderData={order.data} />
       ))}
