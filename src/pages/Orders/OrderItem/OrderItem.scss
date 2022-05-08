@@ -3,7 +3,10 @@
 .orderItem {
   border: 1px #d5d9d9 solid;
   padding: 14px 18px;
-  border-radius: 0 0 8px 8px;
+  &:last-of-type {
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+  }
   &__container {
     .deliver__info {
       span {
