@@ -4,7 +4,6 @@ import NumberFormat from 'react-number-format';
 import { useParams } from 'react-router-dom';
 import sanityClient, { urlFor } from '../../lib/sanityClient';
 import { ProductType } from '../../types';
-// import PRODUCTS from '../../constants/products';
 import Gallery from './Gallery/Gallery';
 import Panel from './Panel/Panel';
 import './Product.scss';
