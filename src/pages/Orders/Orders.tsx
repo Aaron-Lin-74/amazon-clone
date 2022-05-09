@@ -6,7 +6,7 @@ import Order from './Order/Order';
 import './Orders.scss';
 
 function Orders() {
-  const [orders, setOrders] = useState<OrderType[]>([]);
+  const [orders, setOrders] = useState<OrderType[] | null>(null);
   const [{ user }] = useStateValue();
   useEffect(() => {
     const fetchOrders = async () => {
@@ -26,10 +26,19 @@ function Orders() {
           <h1>Your Orders</h1>
         </div>
       </div>
-      {orders && <h2>You have not placed any orders in past 3 months.</h2>}
-      {orders.map((order) => (
-        <Order key={order.id} orderData={order.data} />
-      ))}
+      {!orders && (
+        <img
+          src={`${process.env.PUBLIC_URL}/loading.gif`}
+          alt=''
+          className='loading__img'
+        />
+      )}
+      {orders &&
+        (orders.length === 0 ? (
+          <h2>You have not placed any orders in past 3 months.</h2>
+        ) : (
+          orders.map((order) => <Order key={order.id} orderData={order.data} />)
+        ))}
     </main>
   );
 }
