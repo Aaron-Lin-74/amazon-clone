@@ -32,7 +32,7 @@ We use Github Action to perform CI/CD, that automatically run the test on every 
 Jest and React Testing Library.
 
 ## Using the app
-
+![home page](https://user-images.githubusercontent.com/84072071/167325712-37dc18eb-2d96-498a-b812-02f77eb2354a.png)
 When playing around with this Amazon Clone App, for the payment page, please just use the test card details (all 42) as below:
 ![payment page](https://user-images.githubusercontent.com/84072071/167288645-3458c676-b537-4b6d-a5b1-45bc510da8b2.png)
 ## License
