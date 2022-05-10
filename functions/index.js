@@ -48,17 +48,59 @@ app.post('/create-checkout-session', async (req, res) => {
   }
 });
 
-// retrieve a user's order records
+const getDefaultTimestamp = () => {
+  // The default operation of getting date of three months prior
+  const date = new Date();
+  date.setMonth(date.getMonth() - 3);
+  const timestamp = admin.firestore.Timestamp.fromDate(date);
+  return timestamp;
+};
+
+// Get the firestore timestamp of the first day of the year.
+const getTimestampOfFirstDay = (year) => {
+  const date = new Date(year, 0, 1);
+  const timestamp = admin.firestore.Timestamp.fromMillis(
+    Date.parse(date.toString())
+  );
+  return timestamp;
+};
+
+// Get the firestore timestamp of the last day of the year (the first day of next year).
+const getTimestampOfLastDay = (year) => {
+  const date = new Date(year);
+  const lastDate = new Date(date.getFullYear() + 1, 0, 1);
+  const timestamp = admin.firestore.Timestamp.fromMillis(
+    Date.parse(lastDate.toString())
+  );
+  return timestamp;
+};
+
+// retrieve a user's order records, within three month by default
 app.get('/orders', async (req, res) => {
   const userId = req.query.userId;
+  const year = req.query.year;
+  let snapshot;
   try {
-    const snapshot = await admin
-      .firestore()
-      .collection('users')
-      .doc(userId)
-      .collection('orders')
-      .orderBy('createdAt', 'desc')
-      .get();
+    if (year === undefined) {
+      snapshot = await admin
+        .firestore()
+        .collection('users')
+        .doc(userId)
+        .collection('orders')
+        .where('createdAt', '>', getDefaultTimestamp())
+        .orderBy('createdAt', 'desc')
+        .get();
+    } else {
+      snapshot = await admin
+        .firestore()
+        .collection('users')
+        .doc(userId)
+        .collection('orders')
+        .where('createdAt', '>=', getTimestampOfFirstDay(year))
+        .where('createdAt', '<', getTimestampOfLastDay(year))
+        .orderBy('createdAt', 'desc')
+        .get();
+    }
     res.status(200).send(
       snapshot.docs.map((doc) => {
         return {
