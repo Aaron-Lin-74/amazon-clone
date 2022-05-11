@@ -73,26 +73,28 @@ function Orders() {
         <div className='orders__heading'>
           <h1>Your Orders</h1>
         </div>
-        <div className='ordersControl__container'>
-          <div className='ordersYear__container'>
-            <span>
-              {orders &&
-                (orders.length > 1
-                  ? `${orders.length} orders `
-                  : `${orders.length} order `)}
-            </span>
-            placed in{' '}
-            <select
-              className='ordersYear__select'
-              tabIndex={0}
-              value={orderYear}
-              onChange={(e) => fetchOrdersWithYear(e.target.value)}
-            >
-              <option value='past 3 months'>past 3 months</option>
-              {listLastNYears(8)}
-            </select>{' '}
+        {!loading && (
+          <div className='ordersControl__container'>
+            <div className='ordersYear__container'>
+              <span>
+                {orders &&
+                  (orders.length > 1
+                    ? `${orders.length} orders `
+                    : `${orders.length} order `)}
+              </span>
+              placed in{' '}
+              <select
+                className='ordersYear__select'
+                tabIndex={0}
+                value={orderYear}
+                onChange={(e) => fetchOrdersWithYear(e.target.value)}
+              >
+                <option value='past 3 months'>past 3 months</option>
+                {listLastNYears(8)}
+              </select>{' '}
+            </div>
           </div>
-        </div>
+        )}
       </div>
       {loading && (
         <img
@@ -104,7 +106,7 @@ function Orders() {
       {!loading &&
         orders &&
         (orders.length === 0 ? (
-          <h2>You have not placed any orders in past 3 months.</h2>
+          <h2>You have not placed any orders in {orderYear}.</h2>
         ) : (
           orders.map((order) => <Order key={order.id} orderData={order.data} />)
         ))}
