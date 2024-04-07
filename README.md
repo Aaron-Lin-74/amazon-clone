@@ -6,7 +6,7 @@ This is a full-stack serverless web application developed using TypeScript, Reac
 
 The live application is hosted using firebase, please find the link below:
 
-https://clone-b1e10.web.app/
+clone-b1e10.firebaseapp.com
 
 ## Front-end
 
