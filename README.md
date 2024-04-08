@@ -6,8 +6,7 @@ This is a full-stack serverless web application developed using TypeScript, Reac
 
 The live application is hosted using firebase, please find the link below:
 
-clone-b1e10.firebaseapp.com
-
+[my-ecommerce-227d4.web.app/](https://my-ecommerce-227d4.web.app/)
 ## Front-end
 
 - For the React front-end application, we use function components to create independent, resuable UI pieces, and React-Router-dom to perform the browser router.
